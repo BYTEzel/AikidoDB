@@ -29,8 +29,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
 
         public void Edit(ICategory category, int index)
         {
-            categoryList.RemoveAt(index);
-            categoryList.Insert(index, category as Category);
+            categoryList[index] = category as Category;
         }
     }
 }
