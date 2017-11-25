@@ -1,0 +1,55 @@
+﻿<Application
+    x:Class="AikidoTrainingDatabase.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AikidoTrainingDatabase"
+    RequestedTheme="Dark">
+
+    <Application.Resources>
+        <Style TargetType="Button" x:Key="ButtonMainMenu">
+            <Setter Property="Margin" Value="50"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="300"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonMenu">
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="Height" Value="50"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonIcon" BasedOn="{StaticResource ButtonMenu}">
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonMenuBack" BasedOn="{StaticResource ButtonIcon}">
+            <Setter Property="Content" Value="&#xE0C4;" />            
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonMenuNew" BasedOn="{StaticResource ButtonIcon}">
+            <Setter Property="Content" Value="&#xE109;"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonMenuEdit" BasedOn="{StaticResource ButtonIcon}">
+            <Setter Property="Content" Value="&#xE712;"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonMenuDelete" BasedOn="{StaticResource ButtonIcon}">
+            <Setter Property="Content" Value="&#xE107;"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonMenuSave" BasedOn="{StaticResource ButtonIcon}">
+            <Setter Property="Content" Value="&#xE105;"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonMenuOk" BasedOn="{StaticResource ButtonIcon}">
+            <Setter Property="Content" Value="&#xE10B;"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonMenuCancel" BasedOn="{StaticResource ButtonIcon}">
+            <Setter Property="Content" Value="&#xE10A;"/>
+        </Style>
+
+    </Application.Resources>
+</Application>
