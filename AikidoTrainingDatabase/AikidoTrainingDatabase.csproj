@@ -101,6 +101,7 @@
     <Compile Include="ApplicationLayer\IDatabase.cs" />
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\ICategory.cs" />
+    <Compile Include="Domain\ISearchable.cs" />
     <Compile Include="Infrastructure\Dialogs\DeleteDialog.cs" />
     <Compile Include="Infrastructure\IGui.cs" />
     <Compile Include="Infrastructure\IO\IDatabaseIO.cs" />
