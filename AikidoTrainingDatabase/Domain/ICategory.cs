@@ -1,10 +1,6 @@
-﻿using System.Collections.ObjectModel;
-
-namespace AikidoTrainingDatabase.Domain
+﻿namespace AikidoTrainingDatabase.Domain
 {
-    public interface ICategory
+    public interface ICategory : ISearchable
     {
-        string Name { get; set; }
-        string Description { get; set; }
     }
 }

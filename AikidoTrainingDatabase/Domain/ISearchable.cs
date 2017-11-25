@@ -5,7 +5,7 @@
     /// All keywords have to be contained in the two defined fields
     /// "Name" and "Description".
     /// </summary>
-    interface ISearchable
+    public interface ISearchable
     {
         string Name { get; set; }
         string Description { get; set; }

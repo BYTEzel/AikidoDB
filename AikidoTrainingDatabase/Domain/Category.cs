@@ -1,6 +1,6 @@
 ﻿namespace AikidoTrainingDatabase.Domain
 {
-    public class Category : ICategory, ISearchable
+    public class Category : ICategory
     {
         private string name;
         private string description;
