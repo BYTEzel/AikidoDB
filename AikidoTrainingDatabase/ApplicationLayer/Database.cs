@@ -1,5 +1,6 @@
 ﻿using AikidoTrainingDatabase.Domain;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace AikidoTrainingDatabase.ApplicationLayer
 {
@@ -20,8 +21,11 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             categories.Add(new Category("Cat1"));
             categories.Add(new Category("Cat2"));
 
+            var images = new ObservableCollection<BitmapImage>();
+            images.Add(new BitmapImage(new System.Uri("ms-appx://AikidoTrainingDatabase/Assets/StoreLogo.png")));
+
             excerciseList.Add(new Excercise("Name", "Description"));
-            excerciseList.Add(new Excercise("Name2", "Description2", categories, new ObservableCollection<Windows.UI.Xaml.Media.Imaging.BitmapImage>()));
+            excerciseList.Add(new Excercise("Name2", "Description2", categories, images));
         }
 
         public ObservableCollection<Category> CategoryList { get => categoryList; }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using AikidoTrainingDatabase.Domain;
 using Windows.UI.Xaml.Media.Imaging;
+using System;
 
 namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
 {
@@ -10,12 +11,30 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
         private ObservableCollection<BitmapImage> images;
         private string name;
         private string description;
-        private string categoriesDisplay;
 
         public string Name { get => name; set => name = value; }
         public string Description { get => description; set => description = value; }
         public ObservableCollection<BitmapImage> Images { get => images; set => images = value; }
         public ObservableCollection<Category> Categories { get => categories; set => categories = value; }
+
+        public Uri ImageDisplay
+        {
+            get
+            {
+                if (images != null)
+                {
+                    if (images.Count > 0)
+                        return images[0].UriSource;
+                    else
+                        return null;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public string CategoriesDisplay
         {
             get
