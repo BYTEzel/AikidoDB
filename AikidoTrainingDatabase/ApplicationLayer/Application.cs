@@ -23,7 +23,8 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         {
             this.gui = gui;
             databaseIO = new XmlHandler();
-            ReadDatabase();
+            //ReadDatabase();
+            database = new Database();
         }
 
         public void CreateCategory()
@@ -35,6 +36,12 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         {
             database.Create(category);
             ShowCategories();
+        }
+
+        public void CreateExcerciseCallback(IExcercise excercise)
+        {
+            database.Create(excercise);
+            ShowExcercises();
         }
 
         public void DeleteCategory(ICategory category)
@@ -56,6 +63,11 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         public void ShowCategories()
         {
             gui.ShowCategoryPage(database.CategoryList);
+        }
+
+        public void ShowExcercises()
+        {
+            gui.ShowExcercisePage(database.ExcerciseList);
         }
 
         public bool VerifyCategory(ICategory category)
@@ -81,5 +93,6 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             var taskRead = Task.Run(() => database = databaseIO.ReadDatabase(PATH_DB));
             taskRead.Wait();
         }
+
     }
 }

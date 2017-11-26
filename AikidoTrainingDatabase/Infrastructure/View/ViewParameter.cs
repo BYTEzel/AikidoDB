@@ -9,7 +9,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
     /// </summary>
     public class ViewParameter
     {
-        public enum Action { Empty, CategoryCreate, CategoryShow, CategoryEdit, MainMenuShow };
+        public enum Action { Empty, CategoryCreate, CategoryShow, ExcerciseShow, CategoryEdit, MainMenuShow };
         private List<Object> paramList;
         
         public ViewParameter(Action action, IGui gui, IApplication application)

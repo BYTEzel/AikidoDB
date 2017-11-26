@@ -6,7 +6,6 @@ using AikidoTrainingDatabase.Infrastructure.View;
 using AikidoTrainingDatabase.Domain;
 using System;
 using Windows.UI.Xaml;
-using System.Threading.Tasks;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace AikidoTrainingDatabase
@@ -39,6 +38,14 @@ namespace AikidoTrainingDatabase
             ViewParameter par = new ViewParameter(ViewParameter.Action.CategoryShow, this, application);
             par.AddParameter(categoryCollection);
             NavigateTo(Views.Category, par);
+        }
+
+
+        public void ShowExcercisePage(ICollection exerciseCollection)
+        {
+            ViewParameter par = new ViewParameter(ViewParameter.Action.ExcerciseShow, this, application);
+            par.AddParameter(exerciseCollection);
+            NavigateTo(Views.Excercise, par);
         }
 
         public void ShowMainMenu()
@@ -82,6 +89,9 @@ namespace AikidoTrainingDatabase
                     case Views.CategorySingle:
                         Frame.Navigate(typeof(ViewCategorySingle), paramObj);
                         break;
+                    case Views.Excercise:
+                        Frame.Navigate(typeof(ViewExcercise), paramObj);
+                        break;
                     case Views.Main:
                         Frame.Navigate(typeof(Menu), paramObj);
                         break;
@@ -98,6 +108,9 @@ namespace AikidoTrainingDatabase
                         break;
                     case Views.CategorySingle:
                         Frame.Navigate(typeof(ViewCategorySingle));
+                        break;
+                    case Views.Excercise:
+                        Frame.Navigate(typeof(ViewExcercise));
                         break;
                     case Views.Main:
                         Frame.Navigate(typeof(Menu));
@@ -117,6 +130,6 @@ namespace AikidoTrainingDatabase
         {
             // The writing in this case is threaded, so no await needed
             application.WriteDatabase();
-        }        
+        }
     }
 }

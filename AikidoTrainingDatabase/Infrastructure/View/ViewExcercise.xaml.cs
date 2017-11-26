@@ -1,5 +1,8 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
+using AikidoTrainingDatabase.Domain;
+using AikidoTrainingDatabase.Infrastructure.ExtendedClasses;
 using System;
+using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -10,55 +13,50 @@ namespace AikidoTrainingDatabase.Infrastructure.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Menu : Page
+    public sealed partial class ViewExcercise : Page
     {
-        IApplication application;
+        private ObservableCollection<Excercise> excerciseCollection;
+        public ObservableCollection<ExcerciseDisplay> excerciseCollectionDisplay;
+        private IApplication application;
+        private IGui gui;
 
-        public Menu()
+        public ViewExcercise()
         {
             this.InitializeComponent();
+            excerciseCollectionDisplay = new ObservableCollection<ExcerciseDisplay>();
         }
 
-        private void ButtonTraining_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-
-        }
-
-        private void ButtonExcercise_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            application.ShowExcercises();
-        }
-
-        private void ButtonCategory_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            application.ShowCategories();
-        }
-
-        private void ButtonExit_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-
-        }
-        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Object[] param = e.Parameter as Object[];
             if (param != null)
             {
                 ViewParameter parameter = new ViewParameter(param);
+                gui = parameter.GetGui();
                 application = parameter.GetApplication();
 
                 // Since we do not need the parameter any more, overwrite them
                 param = parameter.GetParameter();
                 switch (parameter.GetAction())
                 {
-                    case ViewParameter.Action.MainMenuShow:
-                        // Nothing more to do here
+                    case ViewParameter.Action.ExcerciseShow:
+                        excerciseCollection = param[0] as ObservableCollection<Excercise>;
+                        CastExcerciseCollection(excerciseCollection);
                         break;
                     default:
                         throw new NotImplementedException();
                 }
             }
             base.OnNavigatedTo(e);
+        }
+
+        private void CastExcerciseCollection(ObservableCollection<Excercise> observableCollection)
+        {
+            excerciseCollectionDisplay.Clear();
+            foreach (Excercise e in observableCollection)
+            {
+                excerciseCollectionDisplay.Add(new ExcerciseDisplay(e));
+            }
         }
     }
 }

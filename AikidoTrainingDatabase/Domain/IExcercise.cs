@@ -5,7 +5,7 @@ namespace AikidoTrainingDatabase.Domain
 {
     public interface IExcercise : ISearchable
     {
-        ObservableCollection<ICategory> Categories { get; set; }
+        ObservableCollection<Category> Categories { get; set; }
         ObservableCollection<BitmapImage> Images { get; set; }
     }
 }

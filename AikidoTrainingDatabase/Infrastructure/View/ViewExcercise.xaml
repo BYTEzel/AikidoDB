@@ -1,0 +1,51 @@
+﻿<Page
+    x:Class="AikidoTrainingDatabase.Infrastructure.View.ViewExcercise"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AikidoTrainingDatabase.Infrastructure.View"
+    xmlns:UserControls="using:AikidoTrainingDatabase.Infrastructure.Controls"    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <!-- 
+        Two templates for displaying the data are designed. The normal view contains the default view for an 
+        item which is not selected. 
+        The detail view contain certain controls to manipulate the given data.
+        -->
+        <DataTemplate x:Name="Normal" x:Key="Normal">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding Images}" Width="200"/>
+                <TextBlock Text="{Binding Name}" Width="200"/>
+                <TextBlock Text="{Binding CategoriesDisplay}" Width="200"/>
+                <TextBlock Text="{Binding Description}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Name="Detail" x:Key="Detail">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Name}" Width="200" />
+                    <TextBlock Text="{Binding Description}" Width="500"/>
+                    <Button x:Name="ButtonEdit" Style="{StaticResource ButtonMenuEdit}" />
+                    <Button x:Name="ButtonDelete"  Style="{StaticResource ButtonMenuDelete}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Vertical">
+            <UserControls:TitleBox Title="Excercise" />
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="ButtonBack" Style="{StaticResource ButtonMenuBack}" />
+                <Button x:Name="ButtonNew" Style="{StaticResource ButtonMenuNew}"/>
+            </StackPanel>
+            <!-- The SelectionChanged evaluates the data if it is clicked and update the used template. Details
+             are described in 
+            https://stackoverflow.com/questions/40026593/uwp-listview-how-to-expand-an-item-when-select-it
+            -->
+            <ListView x:Name="ListViewExcercise" ItemsSource="{x:Bind excerciseCollectionDisplay}" ItemTemplate="{StaticResource Normal}"/>
+        </StackPanel>
+    </Grid>
+</Page>

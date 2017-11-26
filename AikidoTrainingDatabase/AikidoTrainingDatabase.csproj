@@ -105,6 +105,7 @@
     <Compile Include="Domain\IExcercise.cs" />
     <Compile Include="Domain\ISearchable.cs" />
     <Compile Include="Infrastructure\Dialogs\DeleteDialog.cs" />
+    <Compile Include="Infrastructure\ExtendedClasses\ExcerciseDisplay.cs" />
     <Compile Include="Infrastructure\IGui.cs" />
     <Compile Include="Infrastructure\IO\IDatabaseIO.cs" />
     <Compile Include="Infrastructure\IO\XmlHandler.cs" />
@@ -118,6 +119,9 @@
     <Compile Include="Infrastructure\Controls\TitleBox.xaml.cs" />
     <Compile Include="Infrastructure\View\ViewCategorySingle.xaml.cs">
       <DependentUpon>ViewCategorySingle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\View\ViewExcercise.xaml.cs">
+      <DependentUpon>ViewExcercise.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\View\ViewParameter.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -163,6 +167,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Infrastructure\View\ViewCategorySingle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Infrastructure\View\ViewExcercise.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

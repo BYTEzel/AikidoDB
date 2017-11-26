@@ -32,6 +32,11 @@
             Name = category.Name;
             Description = category.Name;
         }
-        #endregion        
+        #endregion
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -6,8 +6,13 @@ namespace AikidoTrainingDatabase.ApplicationLayer
     public interface IDatabase
     {
         ObservableCollection<Category> CategoryList { get; }
+        ObservableCollection<Excercise> ExcerciseList { get; }
+
         void Create(ICategory category);
+        void Create(IExcercise excercise);
         void Edit(ICategory category, int index);
+        void Edit(IExcercise excercise, int index);
         void Delete(ICategory category);
+        void Delete(IExcercise excercise);
     }
 }
