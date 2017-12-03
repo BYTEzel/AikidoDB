@@ -28,7 +28,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             excerciseList.Add(new Excercise("Name2", "Description2", categories, images));
         }
 
-        public ObservableCollection<Category> CategoryList { get => categoryList; }
+        public ObservableCollection<Category> CategoryList { get => categoryList; set => categoryList = value;  }
         public ObservableCollection<Excercise> ExcerciseList { get => excerciseList; set => excerciseList = value; }
 
         public void Create(ICategory category)

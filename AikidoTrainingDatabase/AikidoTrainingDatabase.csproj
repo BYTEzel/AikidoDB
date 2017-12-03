@@ -75,6 +75,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -105,7 +106,9 @@
     <Compile Include="Domain\IExcercise.cs" />
     <Compile Include="Domain\ISearchable.cs" />
     <Compile Include="Infrastructure\Dialogs\DeleteDialog.cs" />
+    <Compile Include="Infrastructure\ExtendedClasses\DatabaseXml.cs" />
     <Compile Include="Infrastructure\ExtendedClasses\ExcerciseDisplay.cs" />
+    <Compile Include="Infrastructure\ExtendedClasses\ExcerciseXml.cs" />
     <Compile Include="Infrastructure\IGui.cs" />
     <Compile Include="Infrastructure\IO\IDatabaseIO.cs" />
     <Compile Include="Infrastructure\IO\XmlHandler.cs" />

@@ -2,6 +2,8 @@
 using AikidoTrainingDatabase.ApplicationLayer;
 using Windows.Storage;
 using System.IO;
+using AikidoTrainingDatabase.Infrastructure.ExtendedClasses;
+using System.Threading.Tasks;
 
 namespace AikidoTrainingDatabase.Infrastructure.IO
 {
@@ -14,30 +16,24 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
             localFolder = (ApplicationData.Current.LocalFolder as StorageFolder).Path + "\\";
         }
 
-        public IDatabase ReadDatabase(string fileName)
+        public async Task<IDatabase> ReadDatabase(string fileName)
         {
             System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(Database));
             var file = File.OpenRead(localFolder + fileName);
-            Database database = reader.Deserialize(file) as Database;
+            DatabaseXml databaseXml = reader.Deserialize(file) as DatabaseXml;
             file.Dispose();
-            return database;
+            return await databaseXml.GetDatabase();
         }
 
-        public bool WriteDatabase(IDatabase database, string fileName)
+        public async Task WriteDatabase(IDatabase database, string fileName)
         {
-            System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(Database));
+            System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(DatabaseXml));
+            DatabaseXml databaseXml = new DatabaseXml();
+            await databaseXml.SetDatabase(database);
 
-            try
-            {
-                FileStream file = File.Create(localFolder + fileName);
-                writer.Serialize(file, database);
-                file.Dispose();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            FileStream file = File.Create(localFolder + fileName);
+            writer.Serialize(file, databaseXml);
+            file.Dispose();
         }
     }
 }

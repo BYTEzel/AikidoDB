@@ -82,17 +82,14 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             }
         }
 
-        public void WriteDatabase()
+        public async Task WriteDatabase()
         {
-            var taskWrite = Task.Run(() => databaseIO.WriteDatabase(database, PATH_DB));
-            taskWrite.Wait();
+            await databaseIO.WriteDatabase(database, PATH_DB);
         }
 
-        public void ReadDatabase()
+        public async Task ReadDatabase()
         {
-            var taskRead = Task.Run(() => database = databaseIO.ReadDatabase(PATH_DB));
-            taskRead.Wait();
+            database = await databaseIO.ReadDatabase(PATH_DB);
         }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AikidoTrainingDatabase.Domain;
+using System.Threading.Tasks;
 
 namespace AikidoTrainingDatabase.ApplicationLayer
 {
@@ -13,7 +14,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         void EditCategory(ICategory categoryToEdit, int index);
         void EditCategoryCallback(ICategory categoryEdited, int index);
         void DeleteCategory(ICategory category);
-        void WriteDatabase();
-        void ReadDatabase();
+        Task WriteDatabase();
+        Task ReadDatabase();
     }
 }
