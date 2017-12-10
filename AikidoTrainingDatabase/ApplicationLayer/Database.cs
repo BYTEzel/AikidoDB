@@ -15,18 +15,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         public Database()
         {
             categoryList = new ObservableCollection<Category>();
-            excerciseList = new ObservableCollection<Excercise>();
-
-            var categories = new ObservableCollection<Category>();
-            categories.Add(new Category("Cat1"));
-            categories.Add(new Category("Cat2"));
-
-            var images = new ObservableCollection<BitmapImage>();
-            images.Add(new BitmapImage(new System.Uri("ms-appx:///Assets/StoreLogo.png")));
-
-            
-            excerciseList.Add(new Excercise("Name", "Description"));
-            excerciseList.Add(new Excercise("Name2", "Description2", categories, images));
+            excerciseList = new ObservableCollection<Excercise>();            
         }
 
         public ObservableCollection<Category> CategoryList { get => categoryList; set => categoryList = value;  }
