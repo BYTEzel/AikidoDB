@@ -23,8 +23,16 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         {
             this.gui = gui;
             databaseIO = new XmlHandler();
-            //ReadDatabase();
             database = new Database();
+        }
+
+        /// <summary>
+        /// All costly operations are done here.
+        /// </summary>
+        /// <returns></returns>
+        public async Task Init()
+        {
+            await ReadDatabase();
         }
 
         public void CreateCategory()

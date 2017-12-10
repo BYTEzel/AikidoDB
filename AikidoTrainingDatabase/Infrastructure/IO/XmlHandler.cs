@@ -18,7 +18,7 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
 
         public async Task<IDatabase> ReadDatabase(string fileName)
         {
-            System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(Database));
+            System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(DatabaseXml));
             var file = File.OpenRead(localFolder + fileName);
             DatabaseXml databaseXml = reader.Deserialize(file) as DatabaseXml;
             file.Dispose();

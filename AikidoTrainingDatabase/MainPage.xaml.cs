@@ -27,8 +27,9 @@ namespace AikidoTrainingDatabase
             Windows.UI.Xaml.Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);         
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        private async void Grid_Loaded(object sender, RoutedEventArgs e)
         {
+            await application.Init();
             // Navigate to the menu
             ViewParameter parameter = new ViewParameter(ViewParameter.Action.MainMenuShow, this, application);
             NavigateTo(Views.Main, parameter);

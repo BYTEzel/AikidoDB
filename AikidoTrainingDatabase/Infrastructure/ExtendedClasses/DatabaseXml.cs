@@ -18,6 +18,7 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
 
         public DatabaseXml()
         {
+            database = new Database();
             CategoryList = new ObservableCollection<Category>();
             ExcerciseList = new ObservableCollection<ExcerciseXml>();
         }
