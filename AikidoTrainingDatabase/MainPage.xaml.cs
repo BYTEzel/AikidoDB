@@ -6,6 +6,7 @@ using AikidoTrainingDatabase.Infrastructure.View;
 using AikidoTrainingDatabase.Domain;
 using System;
 using Windows.UI.Xaml;
+using System.Threading.Tasks;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace AikidoTrainingDatabase
@@ -129,7 +130,7 @@ namespace AikidoTrainingDatabase
         async void App_Suspending(Object sender, Windows.ApplicationModel.SuspendingEventArgs e)
         {
             // The writing in this case is threaded, so no await needed
-            application.WriteDatabase();
+            //await application.WriteDatabase();
         }
     }
 }

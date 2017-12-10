@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -58,6 +59,36 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
             return new Excercise(Name, Description, Categories, bitmapImages);
         }
 
+
+        /// <summary>
+        /// Converts an bitmap image into a base64 string representation which
+        /// should be able to be written/read in XML.
+        /// Code from:
+        /// https://social.msdn.microsoft.com/Forums/windowsapps/en-US/1e3e5d76-3747-4545-8343-9371b9747467/uwpxamlhow-to-convert-an-image-to-a-byte-array?forum=wpdevelop
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        public async static Task<string> ImageToString2(BitmapImage image)
+        {
+            RandomAccessStreamReference streamRef = RandomAccessStreamReference.CreateFromUri(image.UriSource);
+            IRandomAccessStreamWithContentType streamWithContent = await streamRef.OpenReadAsync();
+            byte[] buffer = new byte[streamWithContent.Size];
+            await streamWithContent.ReadAsync(buffer.AsBuffer(), (uint)streamWithContent.Size, InputStreamOptions.None);
+            return Convert.ToBase64String(buffer);
+        }
+
+        public async static Task<BitmapImage> StringToImage2(string base64string)
+        {
+            byte[] bytes = Convert.FromBase64String(base64string);
+            BitmapImage image = new BitmapImage();
+            using (InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream())
+            {
+                await stream.WriteAsync(bytes.AsBuffer());
+                stream.Seek(0);
+                await image.SetSourceAsync(stream);
+            }
+            return image;
+        }
 
         /// <summary>
         /// Convert a bitmap image to a base64 string representation which should be 

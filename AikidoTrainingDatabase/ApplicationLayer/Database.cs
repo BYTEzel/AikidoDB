@@ -22,8 +22,9 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             categories.Add(new Category("Cat2"));
 
             var images = new ObservableCollection<BitmapImage>();
-            images.Add(new BitmapImage(new System.Uri("ms-appx://AikidoTrainingDatabase/Assets/StoreLogo.png")));
+            images.Add(new BitmapImage(new System.Uri("ms-appx:///Assets/StoreLogo.png")));
 
+            
             excerciseList.Add(new Excercise("Name", "Description"));
             excerciseList.Add(new Excercise("Name2", "Description2", categories, images));
         }
