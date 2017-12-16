@@ -111,6 +111,7 @@
     <Compile Include="Infrastructure\ExtendedClasses\ExcerciseXml.cs" />
     <Compile Include="Infrastructure\IGui.cs" />
     <Compile Include="Infrastructure\IO\IDatabaseIO.cs" />
+    <Compile Include="Infrastructure\IO\UriHandler.cs" />
     <Compile Include="Infrastructure\IO\XmlHandler.cs" />
     <Compile Include="Infrastructure\View\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>

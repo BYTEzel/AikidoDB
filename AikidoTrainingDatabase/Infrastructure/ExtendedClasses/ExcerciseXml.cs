@@ -1,11 +1,11 @@
 ﻿using AikidoTrainingDatabase.Domain;
+using AikidoTrainingDatabase.Infrastructure.IO;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -22,12 +22,15 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
         public ObservableCollection<Category> Categories;
         public ObservableCollection<string> Images;
 
+        private UriHandler uriHandler;
+
         public ExcerciseXml()
         {
             Name = string.Empty;
             Description = string.Empty;
             Categories = new ObservableCollection<Category>();
             Images = new ObservableCollection<string>();
+            uriHandler = new UriHandler();
         }
         
         /// <summary>
@@ -67,26 +70,37 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
         /// <param name="bitmapImage"></param>
         /// <returns></returns>
         private async Task<string> ImageToString(BitmapImage bitmapImage)
-        {
-            string base64string;
-            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(bitmapImage.UriSource);
-            using (var inputStream = await file.OpenSequentialReadAsync())
+        {   
+            if (uriHandler.checkUri(bitmapImage.UriSource))
             {
-                var readStream = inputStream.AsStreamForRead();
-
-                var byteArray = new byte[readStream.Length];
-                await readStream.ReadAsync(byteArray, 0, byteArray.Length);
-                base64string = Convert.ToBase64String(byteArray);
+                // The file was already converted, get the information directly.
+                return uriHandler.decodeStringInfo(bitmapImage.UriSource);
             }
-            return base64string;
+            else
+            {
+                // The file is freshly loaded from HDD, no previous conversation 
+                // available.
+                string base64string;
+                StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(bitmapImage.UriSource);
+                using (var inputStream = await file.OpenSequentialReadAsync())
+                {
+                    var readStream = inputStream.AsStreamForRead();
+
+                    var byteArray = new byte[readStream.Length];
+                    await readStream.ReadAsync(byteArray, 0, byteArray.Length);
+                    base64string = Convert.ToBase64String(byteArray);
+                }
+                return base64string;
+            }
         }
+
         
         /// <summary>
         /// Convert a base64 string to a image.
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>        
-        private async static Task<BitmapImage> StringToImage(string s)
+        private async Task<BitmapImage> StringToImage(string s)
         {
             byte[] bytes = Convert.FromBase64String(s);
             BitmapImage image = new BitmapImage();
@@ -96,6 +110,8 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
                 stream.Seek(0);
                 await image.SetSourceAsync(stream);
             }
+            image.UriSource = uriHandler.encodeStringInfo(s);
+
             return image;
         }
     }
