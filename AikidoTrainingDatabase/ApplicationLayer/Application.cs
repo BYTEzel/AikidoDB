@@ -14,6 +14,13 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         private IDatabase database;
         private IDatabaseIO databaseIO;
 
+
+        public Application()
+        {
+            databaseIO = new XmlHandler();
+            database = new Database();
+        }
+
         /// <summary>
         /// Database is initialized with the stored values.
         /// </summary>
@@ -106,5 +113,9 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             database = await databaseIO.ReadDatabase(PathDb);
         }
 
+        public string GetDatabasePathExtension()
+        {
+            return databaseIO.GetDatabasePathExtension();
+        }
     }
 }

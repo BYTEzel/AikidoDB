@@ -17,6 +17,11 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
             localFolder = (ApplicationData.Current.LocalFolder as StorageFolder).Path + "\\";
         }
 
+        public string GetDatabasePathExtension()
+        {
+            return ".xml";
+        }
+
         public async Task<IDatabase> ReadDatabase(string fileName)
         {
             System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(DatabaseXml));
