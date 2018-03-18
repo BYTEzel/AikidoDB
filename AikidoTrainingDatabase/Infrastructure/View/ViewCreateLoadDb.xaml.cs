@@ -98,7 +98,8 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                     await Task.Run(() => application.CreateDatabase(path));
                 }
                 // Navigate to the next view
-                gui.NavigateTo(Views.Main);
+                ViewParameter viewParameter = new ViewParameter(ViewParameter.Action.MainMenuShow, gui, application);
+                gui.NavigateTo(Views.Main, viewParameter);
             }
             else
             {
