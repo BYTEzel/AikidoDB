@@ -10,6 +10,7 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
     class XmlHandler : IDatabaseIO
     {
         string localFolder;
+        DatabaseXml databaseXml;
 
         public XmlHandler()
         {
@@ -20,7 +21,7 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
         {
             System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(DatabaseXml));
             var file = File.OpenRead(localFolder + fileName);
-            DatabaseXml databaseXml = reader.Deserialize(file) as DatabaseXml;
+            databaseXml = reader.Deserialize(file) as DatabaseXml;
             file.Dispose();
             return await databaseXml.GetDatabase();
         }
@@ -28,7 +29,7 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
         public async Task WriteDatabase(IDatabase database, string fileName)
         {
             System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(DatabaseXml));
-            DatabaseXml databaseXml = new DatabaseXml();
+            //DatabaseXml databaseXml = new DatabaseXml();
             await databaseXml.SetDatabase(database);
 
             FileStream file = File.Create(localFolder + fileName);

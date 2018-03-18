@@ -5,10 +5,14 @@ using System.Collections;
 namespace AikidoTrainingDatabase.Infrastructure
 {
     // Collect all the possible views to be selected for navigation in NavigateTo
-    public enum Views { Main, Category, CategorySingle, Excercise}
+    public enum Views { CreateLoadDatabase, Main, Category, CategorySingle, Excercise}
 
     public interface IGui
     {
+        /// <summary>
+        /// Shows the startup menu to load or create a new database.
+        /// </summary>
+        void ShowCreateLoadDatabase();
         /// <summary>
         /// Shows the main menu with the options to select the certain data
         /// types.

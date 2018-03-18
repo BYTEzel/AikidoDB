@@ -23,6 +23,7 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
         public ObservableCollection<string> Images;
 
         private UriHandler uriHandler;
+        private ImageLibrary ImageLibrary;
 
         public ExcerciseXml()
         {
@@ -31,6 +32,17 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
             Categories = new ObservableCollection<Category>();
             Images = new ObservableCollection<string>();
             uriHandler = new UriHandler();
+            ImageLibrary = new ImageLibrary();
+        }
+
+        public ExcerciseXml(ref ImageLibrary imageLibrary)
+        {
+            Name = string.Empty;
+            Description = string.Empty;
+            Categories = new ObservableCollection<Category>();
+            Images = new ObservableCollection<string>();
+            uriHandler = new UriHandler();
+            ImageLibrary = imageLibrary;
         }
         
         /// <summary>
@@ -71,10 +83,10 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
         /// <returns></returns>
         private async Task<string> ImageToString(BitmapImage bitmapImage)
         {   
-            if (uriHandler.checkUri(bitmapImage.UriSource))
+            if (ImageLibrary.CheckEntry(bitmapImage))
             {
                 // The file was already converted, get the information directly.
-                return uriHandler.decodeStringInfo(bitmapImage.UriSource);
+                return ImageLibrary.FindEntry(bitmapImage);
             }
             else
             {
@@ -110,7 +122,8 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
                 stream.Seek(0);
                 await image.SetSourceAsync(stream);
             }
-            image.UriSource = uriHandler.encodeStringInfo(s);
+            ImageLibrary.AddEntry(image, s);
+            //image.UriSource = uriHandler.encodeStringInfo(s);
 
             return image;
         }

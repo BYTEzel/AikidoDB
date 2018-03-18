@@ -36,7 +36,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private async void ButtonExit_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            await application.WriteDatabase();
+            //await application.WriteDatabase();
         }
         
         protected override void OnNavigatedTo(NavigationEventArgs e)

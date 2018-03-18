@@ -1,5 +1,6 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
 using AikidoTrainingDatabase.Domain;
+using AikidoTrainingDatabase.Infrastructure.IO;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -15,12 +16,14 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
         public ObservableCollection<ExcerciseXml> ExcerciseList { get; }
 
         private IDatabase database;
+        private ImageLibrary imageLibrary;
 
         public DatabaseXml()
         {
             database = new Database();
             CategoryList = new ObservableCollection<Category>();
             ExcerciseList = new ObservableCollection<ExcerciseXml>();
+            imageLibrary = new ImageLibrary();
         }
                 
         public async Task SetDatabase(IDatabase database)
@@ -28,7 +31,7 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
             this.database = database;
             foreach (Excercise e in database.ExcerciseList)
             {
-                ExcerciseXml eXml = new ExcerciseXml();
+                ExcerciseXml eXml = new ExcerciseXml(ref imageLibrary);
                 await eXml.SetExcercise(e);
                 ExcerciseList.Add(eXml);
             }

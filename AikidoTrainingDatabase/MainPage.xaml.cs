@@ -6,7 +6,6 @@ using AikidoTrainingDatabase.Infrastructure.View;
 using AikidoTrainingDatabase.Domain;
 using System;
 using Windows.UI.Xaml;
-using System.Threading.Tasks;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace AikidoTrainingDatabase
@@ -27,12 +26,22 @@ namespace AikidoTrainingDatabase
             Windows.UI.Xaml.Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);         
         }
 
-        private async void Grid_Loaded(object sender, RoutedEventArgs e)
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
+            ShowCreateLoadDatabase();
+
+            /*
             await application.Init();
             // Navigate to the menu
             ViewParameter parameter = new ViewParameter(ViewParameter.Action.MainMenuShow, this, application);
             NavigateTo(Views.Main, parameter);
+            */
+        }
+
+
+        public void ShowCreateLoadDatabase()
+        {
+            NavigateTo(Views.CreateLoadDatabase);
         }
 
         public void ShowCategoryPage(ICollection categoryCollection)
@@ -117,6 +126,9 @@ namespace AikidoTrainingDatabase
                     case Views.Main:
                         Frame.Navigate(typeof(Menu));
                         break;
+                    case Views.CreateLoadDatabase:
+                        Frame.Navigate(typeof(ViewCreateLoadDb));
+                        break;
                     default:
                         throw new NotImplementedException();
                 }
@@ -133,5 +145,7 @@ namespace AikidoTrainingDatabase
             // The writing in this case is threaded, so no await needed
             //await application.WriteDatabase();
         }
+
+       
     }
 }

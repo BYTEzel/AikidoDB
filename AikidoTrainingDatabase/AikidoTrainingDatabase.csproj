@@ -111,6 +111,8 @@
     <Compile Include="Infrastructure\ExtendedClasses\ExcerciseXml.cs" />
     <Compile Include="Infrastructure\IGui.cs" />
     <Compile Include="Infrastructure\IO\IDatabaseIO.cs" />
+    <Compile Include="Infrastructure\IO\ImageBase64.cs" />
+    <Compile Include="Infrastructure\IO\ImageLibrary.cs" />
     <Compile Include="Infrastructure\IO\UriHandler.cs" />
     <Compile Include="Infrastructure\IO\XmlHandler.cs" />
     <Compile Include="Infrastructure\View\Menu.xaml.cs">
@@ -123,6 +125,9 @@
     <Compile Include="Infrastructure\Controls\TitleBox.xaml.cs" />
     <Compile Include="Infrastructure\View\ViewCategorySingle.xaml.cs">
       <DependentUpon>ViewCategorySingle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\View\ViewCreateLoadDb.xaml.cs">
+      <DependentUpon>ViewCreateLoadDb.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\View\ViewExcercise.xaml.cs">
       <DependentUpon>ViewExcercise.xaml</DependentUpon>
@@ -171,6 +176,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Infrastructure\View\ViewCategorySingle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Infrastructure\View\ViewCreateLoadDb.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

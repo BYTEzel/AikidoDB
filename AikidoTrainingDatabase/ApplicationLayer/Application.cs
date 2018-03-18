@@ -13,7 +13,6 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         private IGui gui;
         private IDatabase database;
         private IDatabaseIO databaseIO;
-        private const string PATH_DB = "database.xml";
 
         /// <summary>
         /// Database is initialized with the stored values.
@@ -32,8 +31,9 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         /// <returns></returns>
         public async Task Init()
         {
-            await ReadDatabase();
+
         }
+                
 
         public void CreateCategory()
         {
@@ -90,15 +90,21 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             }
         }
 
-        public async Task WriteDatabase()
+        public async Task CreateDatabase(string PathDb)
         {
-            //await System.Threading.Tasks.Task.Run(() => databaseIO.WriteDatabase(database, PATH_DB));
-            await databaseIO.WriteDatabase(database, PATH_DB);
+            await WriteDatabase(PathDb);
         }
 
-        public async Task ReadDatabase()
+        public async Task WriteDatabase(string PathDb)
         {
-            database = await databaseIO.ReadDatabase(PATH_DB);
+            //await System.Threading.Tasks.Task.Run(() => databaseIO.WriteDatabase(database, PATH_DB));
+            await databaseIO.WriteDatabase(database, PathDb);
         }
+
+        public async Task ReadDatabase(string PathDb)
+        {
+            database = await databaseIO.ReadDatabase(PathDb);
+        }
+
     }
 }
