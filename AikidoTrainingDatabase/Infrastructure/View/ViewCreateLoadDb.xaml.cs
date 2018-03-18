@@ -1,8 +1,11 @@
-﻿using System;
+﻿using AikidoTrainingDatabase.ApplicationLayer;
+using System;
+using System.IO;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using AikidoTrainingDatabase.ApplicationLayer;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -15,12 +18,13 @@ namespace AikidoTrainingDatabase.Infrastructure.View
     {
         private Button[] ButtonsUi;
         private string dbPathExtension;
+        private IApplication application;
+        private IGui gui;
 
         public ViewCreateLoadDb()
         {
             this.InitializeComponent();
-            ButtonsUi = new Button[] { ButtonMenuNew, ButtonSearchDatabase, ButtonLoadDatabase };
-            dbPathExtension = (new ApplicationLayer.Application()).GetDatabasePathExtension();
+            ButtonsUi = new Button[] { ButtonMenuNew, ButtonSearchDatabase, ButtonLoadDatabase };            
         }
 
         private async void ButtonNewDatabase_Click(object sender, RoutedEventArgs e)
@@ -77,11 +81,48 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             }
         }
 
-        private void ButtonLoadDatabase_Click(object sender, RoutedEventArgs e)
+        private async void ButtonLoadDatabase_Click(object sender, RoutedEventArgs e)
         {
+            string path = TextBoxDatabasePath.Text;
 
+            // Check the path
+            if (checkPath(path))
+            {
+                // Check, if the database exists or a new one should be created
+                if (checkPathExist(path))
+                {
+                    await application.ReadDatabase(path);
+                }
+                else
+                {
+                    await Task.Run(() => application.CreateDatabase(path));
+                }
+                // Navigate to the next view
+                gui.NavigateTo(Views.Main);
+            }
+            else
+            {
+                // In case the path is incorrect, give a message to the user
+                var messageDialog = new MessageDialog("Invalid path");
+                // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
+                messageDialog.Commands.Add(new UICommand("OK"));
+                // Set the command that will be invoked by default
+                messageDialog.DefaultCommandIndex = 0;
+                // Show the message dialog
+                await messageDialog.ShowAsync();
+            }
         }
 
+
+        private bool checkPath(string path)
+        {
+            return ((path.IndexOfAny(Path.GetInvalidPathChars()) <= 0) && (path != null) && (path != string.Empty));
+        }
+
+        private bool checkPathExist(string path)
+        {
+            return File.Exists(path);
+        }
 
         private void EnableUi()
         {
@@ -99,6 +140,20 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             {
                 b.IsEnabled = active;
             }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Object[] param = e.Parameter as Object[];
+            if (param != null)
+            {
+                ViewParameter parameter = new ViewParameter(param);
+                application = parameter.GetApplication();
+                gui = parameter.GetGui();
+
+                dbPathExtension = application.GetDatabasePathExtension();
+            }
+            base.OnNavigatedTo(e);
         }
     }
 }

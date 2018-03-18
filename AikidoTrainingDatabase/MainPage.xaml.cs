@@ -41,7 +41,8 @@ namespace AikidoTrainingDatabase
 
         public void ShowCreateLoadDatabase()
         {
-            NavigateTo(Views.CreateLoadDatabase);
+            ViewParameter par = new ViewParameter(ViewParameter.Action.Empty, this, application);
+            NavigateTo(Views.CreateLoadDatabase, par);
         }
 
         public void ShowCategoryPage(ICollection categoryCollection)
@@ -105,6 +106,9 @@ namespace AikidoTrainingDatabase
                         break;
                     case Views.Main:
                         Frame.Navigate(typeof(Menu), paramObj);
+                        break;
+                    case Views.CreateLoadDatabase:
+                        Frame.Navigate(typeof(ViewCreateLoadDb), paramObj);
                         break;
                     default:
                         throw new NotImplementedException();

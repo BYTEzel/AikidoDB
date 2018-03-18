@@ -1,6 +1,5 @@
 ﻿using AikidoTrainingDatabase.Domain;
 using System.Collections.ObjectModel;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace AikidoTrainingDatabase.ApplicationLayer
 {
