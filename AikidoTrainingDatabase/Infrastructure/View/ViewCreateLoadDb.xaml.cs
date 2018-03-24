@@ -71,8 +71,12 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
                 if (file != null)
                 {
+                    // Application now has read/write access to all contents in the picked folder
+                    // (including other sub-folder contents)
+                    Windows.Storage.AccessCache.StorageApplicationPermissions.
+                        FutureAccessList.AddOrReplace("PickedFolderToken", file);
                     // Application now has read/write access to the picked file
-                    TextBoxDatabasePath.Text = file.Name;
+                    TextBoxDatabasePath.Text = file.Path;
                 }
             }
             finally
@@ -89,9 +93,9 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             if (checkPath(path))
             {
                 // Check, if the database exists or a new one should be created
-                if (checkPathExist(path))
+                if (await checkPathExist(path))
                 {
-                    await application.ReadDatabase(path);
+                    await Task.Run(() => application.ReadDatabase(path));
                 }
                 else
                 {
@@ -120,9 +124,9 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             return ((path.IndexOfAny(Path.GetInvalidPathChars()) <= 0) && (path != null) && (path != string.Empty));
         }
 
-        private bool checkPathExist(string path)
+        private Task<bool> checkPathExist(string path)
         {
-            return File.Exists(path);
+            return Task.Run(() => File.Exists(path));
         }
 
         private void EnableUi()
