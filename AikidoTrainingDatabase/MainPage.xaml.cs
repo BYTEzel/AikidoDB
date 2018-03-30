@@ -144,7 +144,7 @@ namespace AikidoTrainingDatabase
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        async void App_Suspending(Object sender, Windows.ApplicationModel.SuspendingEventArgs e)
+        void App_Suspending(Object sender, Windows.ApplicationModel.SuspendingEventArgs e)
         {
             // The writing in this case is threaded, so no await needed
             //await application.WriteDatabase();

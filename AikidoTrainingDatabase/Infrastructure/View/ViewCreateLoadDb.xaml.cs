@@ -1,6 +1,8 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
 using System;
+using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -17,13 +19,29 @@ namespace AikidoTrainingDatabase.Infrastructure.View
     public sealed partial class ViewCreateLoadDb : Page
     {
         private Button[] ButtonsUi;
-        private string dbPathExtension;
         private IApplication application;
         private IGui gui;
+
+        private string fileDb;
+        private string pathDb;
+        
+        public string PathDb
+        {
+            get => pathDb + "\\" + fileDb;
+            set
+            {
+                if (value != pathDb)
+                {
+                    pathDb = value;
+                    Bindings.Update();
+                }
+            }
+        }
 
         public ViewCreateLoadDb()
         {
             this.InitializeComponent();
+            DataContextChanged += (s, e) => Bindings.Update();
             ButtonsUi = new Button[] { ButtonMenuNew, ButtonSearchDatabase, ButtonLoadDatabase };            
         }
 
@@ -45,10 +63,8 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                     // (including other sub-folder contents)
                     Windows.Storage.AccessCache.StorageApplicationPermissions.
                         FutureAccessList.AddOrReplace("PickedFolderToken", folder);
-                    TextBoxDatabasePath.Text = folder.Path + "\\" + dbPathExtension;
-                    // Set the cursor at the position where the name could be typed in.
-                    TextBoxDatabasePath.SelectionStart = folder.Path.Length+1;
-                    TextBoxDatabasePath.SelectionLength = 0;
+                    PathDb = folder.Path;
+                    await application.CreateDatabase(PathDb);
                 }
             }
             finally
@@ -63,20 +79,19 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
             try
             {
-                var picker = new Windows.Storage.Pickers.FileOpenPicker();
+                var picker = new Windows.Storage.Pickers.FolderPicker();
                 picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.List;
                 picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
-                picker.FileTypeFilter.Add(dbPathExtension);
+                picker.FileTypeFilter.Add("*");
 
-                Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
-                if (file != null)
+                var folder = await picker.PickSingleFolderAsync();
+                if (folder != null)
                 {
                     // Application now has read/write access to all contents in the picked folder
                     // (including other sub-folder contents)
                     Windows.Storage.AccessCache.StorageApplicationPermissions.
-                        FutureAccessList.AddOrReplace("PickedFolderToken", file);
-                    // Application now has read/write access to the picked file
-                    TextBoxDatabasePath.Text = file.Path;
+                        FutureAccessList.AddOrReplace("PickedFolderToken", folder);
+                    PathDb = folder.Path;
                 }
             }
             finally
@@ -146,7 +161,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 b.IsEnabled = active;
             }
         }
-
+        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Object[] param = e.Parameter as Object[];
@@ -156,7 +171,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 application = parameter.GetApplication();
                 gui = parameter.GetGui();
 
-                dbPathExtension = application.GetDatabasePathExtension();
+                fileDb = application.GetDatabasePathExtension();
             }
             base.OnNavigatedTo(e);
         }

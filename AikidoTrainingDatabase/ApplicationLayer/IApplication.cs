@@ -5,7 +5,6 @@ namespace AikidoTrainingDatabase.ApplicationLayer
 {
     public interface IApplication
     {
-        Task Init();
         void ShowCategories();
         void ShowExcercises();
         Task CreateDatabase(string PathDb);

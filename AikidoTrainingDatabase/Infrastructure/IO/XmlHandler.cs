@@ -18,7 +18,7 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
 
         public string GetDatabasePathExtension()
         {
-            return ".xml";
+            return "database.xml";
         }
 
         public async Task<IDatabase> ReadDatabase(string path)

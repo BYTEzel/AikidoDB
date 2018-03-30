@@ -31,17 +31,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             databaseIO = new XmlHandler();
             database = new Database();
         }
-
-        /// <summary>
-        /// All costly operations are done here.
-        /// </summary>
-        /// <returns></returns>
-        public async Task Init()
-        {
-
-        }
-                
-
+        
         public void CreateCategory()
         {
             gui.RequestCategory();

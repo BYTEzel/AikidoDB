@@ -34,7 +34,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             application.ShowCategories();
         }
 
-        private async void ButtonExit_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void ButtonExit_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             //await application.WriteDatabase();
         }
