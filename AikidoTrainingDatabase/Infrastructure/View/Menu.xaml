@@ -18,7 +18,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical">
             <User:TitleBox Title="Main"/>
-            <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal">
+            <VariableSizedWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal">
                 <Button x:Name="ButtonTraining" Style="{StaticResource ButtonMainMenu}" Click="ButtonTraining_Click">
                     <StackPanel Orientation="Vertical">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xECA7;" FontSize="{StaticResource ButtonIconSize}"/>
@@ -37,10 +37,10 @@
                         <TextBlock Text="Category" FontSize="{StaticResource ButtonFontSize}" HorizontalAlignment="Center" Margin="{StaticResource ButtonMargin}"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="ButtonExit" Style="{StaticResource ButtonMainMenu}" Click="ButtonExit_Click">
+                <Button x:Name="ButtonSave" Style="{StaticResource ButtonMainMenu}" Click="ButtonSave_Click">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE7E8;" FontSize="{StaticResource ButtonIconSize}"/>
-                        <TextBlock Text="Exit" FontSize="{StaticResource ButtonFontSize}" HorizontalAlignment="Center" Margin="{StaticResource ButtonMargin}"/>
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE105;" FontSize="{StaticResource ButtonIconSize}"/>
+                        <TextBlock Text="Save" FontSize="{StaticResource ButtonFontSize}" HorizontalAlignment="Center" Margin="{StaticResource ButtonMargin}"/>
                     </StackPanel>
                 </Button>
             </VariableSizedWrapGrid>

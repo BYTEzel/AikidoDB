@@ -1,9 +1,10 @@
-﻿using System;
-using AikidoTrainingDatabase.ApplicationLayer;
-using Windows.Storage;
+﻿using AikidoTrainingDatabase.ApplicationLayer;
 using System.IO;
 using AikidoTrainingDatabase.Infrastructure.ExtendedClasses;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
+using System;
+
 
 namespace AikidoTrainingDatabase.Infrastructure.IO
 {

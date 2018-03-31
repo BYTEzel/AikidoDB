@@ -1,6 +1,7 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
 using System;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -35,9 +36,15 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             application.ShowCategories();
         }
 
-        private async void ButtonExit_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void ButtonSave_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await Task.Run(() => application.WriteDatabase());
+
+            // Give a message to the user
+            var messageDialog = new MessageDialog("");
+            messageDialog.Title = "Database has been stored.";
+            messageDialog.Commands.Add(new UICommand { Label = "Thanks", Id = 0 });
+            await messageDialog.ShowAsync();
         }
         
         protected override void OnNavigatedTo(NavigationEventArgs e)
