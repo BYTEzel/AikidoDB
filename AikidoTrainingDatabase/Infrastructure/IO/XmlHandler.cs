@@ -33,7 +33,6 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
         public async Task WriteDatabase(IDatabase database, string path)
         {
             System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(DatabaseXml));
-            //DatabaseXml databaseXml = new DatabaseXml();
             await databaseXml.SetDatabase(database);
 
             FileStream file = File.Create(path);

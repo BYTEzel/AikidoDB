@@ -54,7 +54,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 var picker = new Windows.Storage.Pickers.FolderPicker();
                 picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.List;
                 picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
-                picker.FileTypeFilter.Add("*");
+                picker.FileTypeFilter.Add("."+fileDb.Split('.')[1]);
 
                 Windows.Storage.StorageFolder folder = await picker.PickSingleFolderAsync();
                 if (folder != null)
@@ -64,7 +64,6 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                     Windows.Storage.AccessCache.StorageApplicationPermissions.
                         FutureAccessList.AddOrReplace("PickedFolderToken", folder);
                     PathDb = folder.Path;
-                    await application.CreateDatabase(PathDb);
                 }
             }
             finally
@@ -82,7 +81,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 var picker = new Windows.Storage.Pickers.FolderPicker();
                 picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.List;
                 picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
-                picker.FileTypeFilter.Add("*");
+                picker.FileTypeFilter.Add("." + fileDb.Split('.')[1]);
 
                 var folder = await picker.PickSingleFolderAsync();
                 if (folder != null)
