@@ -13,7 +13,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         private IGui gui;
         private IDatabase database;
         private IDatabaseIO databaseIO;
-
+        private string pathDb;
 
         public Application()
         {
@@ -89,17 +89,23 @@ namespace AikidoTrainingDatabase.ApplicationLayer
 
         public async Task CreateDatabase(string PathDb)
         {
+            pathDb = PathDb;
             await WriteDatabase(PathDb);
+        }
+
+        public async Task WriteDatabase()
+        {
+            await WriteDatabase(pathDb);
         }
 
         public async Task WriteDatabase(string PathDb)
         {
-            //await System.Threading.Tasks.Task.Run(() => databaseIO.WriteDatabase(database, PATH_DB));
             await databaseIO.WriteDatabase(database, PathDb);
         }
 
         public async Task ReadDatabase(string PathDb)
         {
+            pathDb = PathDb;
             database = await databaseIO.ReadDatabase(PathDb);
         }
 

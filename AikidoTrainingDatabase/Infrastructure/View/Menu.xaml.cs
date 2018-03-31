@@ -1,5 +1,6 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
 using System;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -36,7 +37,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private async void ButtonExit_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            //await application.WriteDatabase();
+            await Task.Run(() => application.WriteDatabase());
         }
         
         protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -16,6 +16,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         void EditCategoryCallback(ICategory categoryEdited, int index);
         void DeleteCategory(ICategory category);
         string GetDatabasePathExtension();
+        Task WriteDatabase();
         Task WriteDatabase(string PathDb);
         Task ReadDatabase(string PathDb);
     }

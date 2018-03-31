@@ -1,8 +1,6 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
 using System;
-using System.ComponentModel;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
