@@ -29,13 +29,6 @@ namespace AikidoTrainingDatabase
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             ShowCreateLoadDatabase();
-
-            /*
-            await application.Init();
-            // Navigate to the menu
-            ViewParameter parameter = new ViewParameter(ViewParameter.Action.MainMenuShow, this, application);
-            NavigateTo(Views.Main, parameter);
-            */
         }
 
 
@@ -66,7 +59,7 @@ namespace AikidoTrainingDatabase
             NavigateTo(Views.Main);
         }
         
-        public void RequestCategory()
+        public void ShowCreateCategory()
         {
             ViewParameter parameter = new ViewParameter(ViewParameter.Action.CategoryCreate, this, application);
             parameter.AddParameter(application);
@@ -103,6 +96,9 @@ namespace AikidoTrainingDatabase
                         break;
                     case Views.Excercise:
                         Frame.Navigate(typeof(ViewExcercise), paramObj);
+                        break;
+                    case Views.ExcerciseSingle:
+                        Frame.Navigate(typeof(ViewExcerciseSingle), paramObj);
                         break;
                     case Views.Main:
                         Frame.Navigate(typeof(Menu), paramObj);
@@ -150,6 +146,19 @@ namespace AikidoTrainingDatabase
             //await application.WriteDatabase();
         }
 
-       
+        public void ShowCreateExcercise()
+        {
+            ViewParameter parameter = new ViewParameter(ViewParameter.Action.ExcerciseCreate, this, application);
+            parameter.AddParameter(application);
+            NavigateTo(Views.ExcerciseSingle, parameter);
+        }
+
+        public void ShowEditExcercise(IExcercise excercise, int index)
+        {
+            ViewParameter parameter = new ViewParameter(ViewParameter.Action.ExcerciseEdit, this, application);
+            parameter.AddParameter(excercise);
+            parameter.AddParameter(index);
+            NavigateTo(Views.ExcerciseSingle, parameter);
+        }
     }
 }

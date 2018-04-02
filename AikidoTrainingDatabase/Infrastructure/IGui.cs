@@ -5,7 +5,7 @@ using System.Collections;
 namespace AikidoTrainingDatabase.Infrastructure
 {
     // Collect all the possible views to be selected for navigation in NavigateTo
-    public enum Views { CreateLoadDatabase, Main, Category, CategorySingle, Excercise}
+    public enum Views { CreateLoadDatabase, Main, Category, CategorySingle, Excercise, ExcerciseSingle}
 
     public interface IGui
     {
@@ -26,17 +26,19 @@ namespace AikidoTrainingDatabase.Infrastructure
         /// <summary>
         /// Get a single category.
         /// </summary>
-        void RequestCategory();
-        /// <summary>
-        /// Shows an overview of all the excercises currently present.
-        /// </summary>
-        /// <param name="exerciseCollection"></param>
-        void ShowExcercisePage(ICollection exerciseCollection);
+        void ShowCreateCategory();
         /// <summary>
         /// Open a mask that allows to edit a certain category.
         /// </summary>
         /// <param name="category"></param>
         void ShowEditCategory(ICategory category, int index);
+        /// <summary>
+        /// Shows an overview of all the excercises currently present.
+        /// </summary>
+        /// <param name="exerciseCollection"></param>
+        void ShowExcercisePage(ICollection exerciseCollection);
+        void ShowCreateExcercise();
+        void ShowEditExcercise(IExcercise excercise, int index);
         /// <summary>
         /// Navigate to a certain view without any parameter
         /// </summary>

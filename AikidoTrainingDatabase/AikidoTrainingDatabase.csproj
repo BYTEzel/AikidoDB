@@ -132,6 +132,9 @@
     <Compile Include="Infrastructure\View\ViewExcercise.xaml.cs">
       <DependentUpon>ViewExcercise.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\View\ViewExcerciseSingle.xaml.cs">
+      <DependentUpon>ViewExcerciseSingle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\View\ViewParameter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -184,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Infrastructure\View\ViewExcercise.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Infrastructure\View\ViewExcerciseSingle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

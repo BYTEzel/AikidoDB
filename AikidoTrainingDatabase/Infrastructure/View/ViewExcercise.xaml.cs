@@ -58,5 +58,16 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 excerciseCollectionDisplay.Add(new ExcerciseDisplay(e));
             }
         }
+
+        private void ButtonBack_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            ViewParameter parameter = new ViewParameter(ViewParameter.Action.MainMenuShow, gui, application);
+            gui.NavigateTo(Views.Main, parameter);
+        }
+
+        private void ButtonNew_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            application.CreateExcercise();
+        }
     }
 }

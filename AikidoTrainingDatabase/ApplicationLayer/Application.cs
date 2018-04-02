@@ -34,13 +34,18 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         
         public void CreateCategory()
         {
-            gui.RequestCategory();
+            gui.ShowCreateCategory();
         }
 
         public void CreateCategoryCallback(ICategory category)
         {
             database.Create(category);
             ShowCategories();
+        }
+
+        public void CreateExcercise()
+        {
+            gui.ShowCreateExcercise();
         }
 
         public void CreateExcerciseCallback(IExcercise excercise)
@@ -112,6 +117,17 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         public string GetDatabasePathExtension()
         {
             return databaseIO.GetDatabasePathExtension();
+        }
+
+        public void EditExcercise(IExcercise excerciseToEdit, int index)
+        {
+            gui.ShowEditExcercise(excerciseToEdit, index);
+        }
+
+        public void EditExcerciseCallback(IExcercise excerciseEdited, int index)
+        {
+            database.Edit(excerciseEdited, index);
+            ShowExcercises();
         }
     }
 }

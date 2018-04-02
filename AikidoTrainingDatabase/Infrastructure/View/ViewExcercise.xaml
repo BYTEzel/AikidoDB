@@ -39,8 +39,8 @@
         <StackPanel Orientation="Vertical">
             <UserControls:TitleBox Title="Excercise" />
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="ButtonBack" Style="{StaticResource ButtonMenuBack}" />
-                <Button x:Name="ButtonNew" Style="{StaticResource ButtonMenuNew}"/>
+                <Button x:Name="ButtonBack" Style="{StaticResource ButtonMenuBack}" Click="ButtonBack_Click"/>
+                <Button x:Name="ButtonNew" Style="{StaticResource ButtonMenuNew}" Click="ButtonNew_Click"/>
             </StackPanel>
             <!-- The SelectionChanged evaluates the data if it is clicked and update the used template. Details
              are described in 
