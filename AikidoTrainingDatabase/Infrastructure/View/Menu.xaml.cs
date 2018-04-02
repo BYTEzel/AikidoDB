@@ -41,9 +41,9 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             await Task.Run(() => application.WriteDatabase());
 
             // Give a message to the user
-            var messageDialog = new MessageDialog("");
+            var messageDialog = new ContentDialog();
             messageDialog.Title = "Database has been stored.";
-            messageDialog.Commands.Add(new UICommand { Label = "Thanks", Id = 0 });
+            messageDialog.CloseButtonText = "Thanks";
             await messageDialog.ShowAsync();
         }
         

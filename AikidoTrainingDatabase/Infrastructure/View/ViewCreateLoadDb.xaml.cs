@@ -101,32 +101,55 @@ namespace AikidoTrainingDatabase.Infrastructure.View
         {
             string path = TextBoxDatabasePath.Text;
 
+            var errorDialog = new ContentDialog();
+            errorDialog.CloseButtonText = "OK";
+
+            bool pathOk = false;
+
             // Check the path
             if (checkPath(path))
             {
                 // Check, if the database exists or a new one should be created
                 if (await checkPathExist(path))
                 {
-                    await Task.Run(() => application.ReadDatabase(path));
+                    try
+                    {
+                        await Task.Run(() => application.ReadDatabase(path));
+                        pathOk = true;
+                    }
+                    catch (Exception exception)
+                    {
+                        errorDialog.Content = exception.Message;
+                        await errorDialog.ShowAsync();
+                    }
                 }
                 else
                 {
-                    await Task.Run(() => application.CreateDatabase(path));
+                    try
+                    {
+                        await Task.Run(() => application.CreateDatabase(path));
+                        pathOk = true;
+                    }
+                    catch (Exception exception)
+                    {
+                        errorDialog.Content = exception.Message;
+                        await errorDialog.ShowAsync();
+                    }
                 }
-                // Navigate to the next view
-                ViewParameter viewParameter = new ViewParameter(ViewParameter.Action.MainMenuShow, gui, application);
-                gui.NavigateTo(Views.Main, viewParameter);
+                if (pathOk)
+                {
+                    // Navigate to the next view
+                    ViewParameter viewParameter = new ViewParameter(ViewParameter.Action.MainMenuShow, gui, application);
+                    gui.NavigateTo(Views.Main, viewParameter);
+                }
             }
             else
             {
                 // In case the path is incorrect, give a message to the user
-                var messageDialog = new MessageDialog("Invalid path");
+                errorDialog.Content = "Invalid path";
                 // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
-                messageDialog.Commands.Add(new UICommand("OK"));
-                // Set the command that will be invoked by default
-                messageDialog.DefaultCommandIndex = 0;
                 // Show the message dialog
-                await messageDialog.ShowAsync();
+                await errorDialog.ShowAsync();
             }
         }
 

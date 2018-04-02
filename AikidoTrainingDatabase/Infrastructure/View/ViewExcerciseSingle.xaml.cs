@@ -57,8 +57,9 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             else
             {
                 // Show an error message
-                var dialog = new MessageDialog("Excercise cannot be created, the data is incomplete :(");
-                dialog.Commands.Add(new UICommand("Ok"));
+                var dialog = new ContentDialog();
+                dialog.Content = "Excercise cannot be created, the data is incomplete :(";
+                dialog.CloseButtonText = "Ok";
                 var result = await dialog.ShowAsync();
             }
         }

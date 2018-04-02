@@ -46,8 +46,9 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             else
             {
                 // Show an error message
-                var dialog = new MessageDialog("Category cannot be created, the data is incomplete :(");
-                dialog.Commands.Add(new UICommand("Ok"));
+                var dialog = new ContentDialog();
+                dialog.Content = "Category cannot be created, the data is incomplete :(";
+                dialog.CloseButtonText = "OK";
                 var result = await dialog.ShowAsync();
             }
         }
