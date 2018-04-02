@@ -13,6 +13,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         void ShowCategories();
         void ShowExcercises();
         bool VerifyCategory(ICategory category);
+        bool VerifyExcercise(IExcercise excercise);
         void EditCategory(ICategory categoryToEdit, int index);
         void EditExcercise(IExcercise excerciseToEdit, int index);
         void EditCategoryCallback(ICategory categoryEdited, int index);

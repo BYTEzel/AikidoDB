@@ -129,5 +129,10 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             database.Edit(excerciseEdited, index);
             ShowExcercises();
         }
+
+        public bool VerifyExcercise(IExcercise excercise)
+        {
+            return (excercise.Name != string.Empty) ? true : false;
+        }
     }
 }

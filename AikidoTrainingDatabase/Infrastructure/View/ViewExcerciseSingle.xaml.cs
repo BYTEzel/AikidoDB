@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -40,9 +41,26 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             excerciseTmp = new Excercise();
         }
 
-        private void ButtonOk_Click(object sender, RoutedEventArgs e)
+        private async void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
-
+            if (application.VerifyExcercise(excercise))
+            {
+                if (parameter.GetAction() == ViewParameter.Action.ExcerciseCreate)
+                {
+                    application.CreateExcerciseCallback(excercise);
+                }
+                else if (parameter.GetAction() == ViewParameter.Action.ExcerciseEdit)
+                {
+                    application.EditExcerciseCallback(excercise, index);
+                }
+            }
+            else
+            {
+                // Show an error message
+                var dialog = new MessageDialog("Excercise cannot be created, the data is incomplete :(");
+                dialog.Commands.Add(new UICommand("Ok"));
+                var result = await dialog.ShowAsync();
+            }
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
