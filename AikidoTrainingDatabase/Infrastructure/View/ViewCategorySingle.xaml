@@ -25,9 +25,9 @@
                     <ColumnDefinition Width="400"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Name" Grid.Row="0" Grid.Column="0"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Text="{x:Bind category.Name, Mode=TwoWay}"/>
-                <TextBlock Text="Description" Grid.Row="1" Grid.Column="0"/>
+                <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" Margin="10,0,0,10"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Text="{x:Bind category.Name, Mode=TwoWay}" Margin="0,0,0,10"/>
+                <TextBlock Text="Description" Grid.Row="1" Grid.Column="0" Margin="10,0,0,0"/>
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{x:Bind category.Description, Mode=TwoWay}"/>
             </Grid>
         </StackPanel>

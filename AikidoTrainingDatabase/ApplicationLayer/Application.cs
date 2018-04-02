@@ -1,6 +1,7 @@
 ﻿using AikidoTrainingDatabase.Domain;
 using AikidoTrainingDatabase.Infrastructure;
 using AikidoTrainingDatabase.Infrastructure.IO;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 /// <summary>
@@ -133,6 +134,16 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         public bool VerifyExcercise(IExcercise excercise)
         {
             return (excercise.Name != string.Empty) ? true : false;
+        }
+
+        public ObservableCollection<Category> GetCategories()
+        {
+            return database.CategoryList;
+        }
+
+        public ObservableCollection<Excercise> GetExcercises()
+        {
+            return database.ExcerciseList;
         }
     }
 }

@@ -107,10 +107,10 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             bool pathOk = false;
 
             // Check the path
-            if (checkPath(path))
+            if (CheckPath(path))
             {
                 // Check, if the database exists or a new one should be created
-                if (await checkPathExist(path))
+                if (await CheckPathExist(path))
                 {
                     try
                     {
@@ -154,12 +154,12 @@ namespace AikidoTrainingDatabase.Infrastructure.View
         }
 
 
-        private bool checkPath(string path)
+        private bool CheckPath(string path)
         {
             return ((path.IndexOfAny(Path.GetInvalidPathChars()) <= 0) && (path != null) && (path != string.Empty));
         }
 
-        private Task<bool> checkPathExist(string path)
+        private Task<bool> CheckPathExist(string path)
         {
             return Task.Run(() => File.Exists(path));
         }

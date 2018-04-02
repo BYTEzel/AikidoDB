@@ -23,7 +23,7 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
         /// <param name="uri">Uri which should be checked.</param>
         /// <returns>True, if the uri is of the type UriHandler and contains 
         /// additional information.</returns>
-        public bool checkUri(Uri uri)
+        public bool CheckUri(Uri uri)
         {
             return uri.ToString().Contains(ADD_SUFFIX);
         }
@@ -33,7 +33,7 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
         /// </summary>
         /// <param name="info">Information which should be encoded in Uri format.</param>
         /// <returns></returns>
-        public Uri encodeStringInfo(string info)
+        public Uri EncodeStringInfo(string info)
         {
             return new Uri(ADD_SUFFIX + info);
         }
@@ -43,9 +43,9 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
         /// </summary>
         /// <param name="uri">Uri in the UriHandler format.</param>
         /// <returns>The encoded information or string.Empty in case the format is not valid.</returns>
-        public string decodeStringInfo(Uri uri)
+        public string DecodeStringInfo(Uri uri)
         {
-            if (checkUri(uri))
+            if (CheckUri(uri))
             {
                 return Regex.Split(uri.ToString(), ADD_SUFFIX)[1];
             }

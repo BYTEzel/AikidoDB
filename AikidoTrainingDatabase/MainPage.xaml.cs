@@ -149,7 +149,7 @@ namespace AikidoTrainingDatabase
         public void ShowCreateExcercise()
         {
             ViewParameter parameter = new ViewParameter(ViewParameter.Action.ExcerciseCreate, this, application);
-            parameter.AddParameter(application);
+            parameter.AddParameter(application.GetCategories());
             NavigateTo(Views.ExcerciseSingle, parameter);
         }
 
@@ -158,6 +158,7 @@ namespace AikidoTrainingDatabase
             ViewParameter parameter = new ViewParameter(ViewParameter.Action.ExcerciseEdit, this, application);
             parameter.AddParameter(excercise);
             parameter.AddParameter(index);
+            parameter.AddParameter(application.GetCategories());
             NavigateTo(Views.ExcerciseSingle, parameter);
         }
     }

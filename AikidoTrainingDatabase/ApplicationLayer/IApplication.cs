@@ -1,4 +1,5 @@
 ﻿using AikidoTrainingDatabase.Domain;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AikidoTrainingDatabase.ApplicationLayer
@@ -20,6 +21,8 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         void EditExcerciseCallback(IExcercise excerciseEdited, int index);
         void DeleteCategory(ICategory category);
         string GetDatabasePathExtension();
+        ObservableCollection<Category> GetCategories();
+        ObservableCollection<Excercise> GetExcercises();
         Task WriteDatabase();
         Task WriteDatabase(string PathDb);
         Task ReadDatabase(string PathDb);
