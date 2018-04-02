@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <Flyout x:Key="FlyoutCategorySelection">
+        <Flyout x:Key="FlyoutCategorySelection" Closed="FlyoutSelection_Closed">
             <ListView x:Name="ListViewCategoriesAll" ItemsSource="{x:Bind categoriesList}" ItemTemplate="{Binding Name}"
                        SelectionMode="Multiple" />
         </Flyout>
@@ -39,11 +39,12 @@
                                         
                     <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" Margin="10,0,0,10"/>
                     <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Text="{x:Bind excercise.Name, Mode=TwoWay}" Margin="0,0,0,10"/>
-                    <TextBlock Text="Description" Grid.Row="1" Grid.Column="0" Margin="10,0,0,0"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="{x:Bind excercise.Description, Mode=TwoWay}"/>
-                    <TextBlock Text="Categories" Grid.Row="2" Grid.Column="0" Margin="10,0,0,0"/>
+                    <TextBlock Text="Description" Grid.Row="1" Grid.Column="0" Margin="10,0,0,10"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{x:Bind excercise.Description, Mode=TwoWay}" Margin="0,0,0,10"/>
+                    <TextBlock Text="Categories" Grid.Row="2" Grid.Column="0" Margin="10,13,0,0"/>
                     <ListView x:Name="ListViewCategories" Grid.Row="2" Grid.Column="1" Height="400"
-                              ItemsSource="{x:Bind excercise.Categories, Mode=OneWay}" 
+                              ItemsSource="{x:Bind excercise.Categories, Mode=OneWay}"       
+                              BorderBrush="Gray" BorderThickness="2"
                               VerticalAlignment="Top" ItemTemplate="{Binding Name}"
                               FlyoutBase.AttachedFlyout="{StaticResource FlyoutCategorySelection}"
                               Tapped="ListViewCategories_Tapped"/>

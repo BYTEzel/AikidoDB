@@ -99,7 +99,16 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private void ListViewCategories_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            FlyoutBase.ShowAttachedFlyout(sender as FrameworkElement);
+            FlyoutBase.ShowAttachedFlyout(sender as FrameworkElement);            
+        }
+
+        private void FlyoutSelection_Closed(object sender, object e)
+        {
+            excercise.Categories.Clear();
+            foreach (Category cat in ListViewCategoriesAll.SelectedItems)
+            {
+                excercise.Categories.Add(cat);
+            }
         }
     }
 }
