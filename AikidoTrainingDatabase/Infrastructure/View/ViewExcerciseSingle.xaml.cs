@@ -24,9 +24,6 @@ namespace AikidoTrainingDatabase.Infrastructure.View
         IGui gui;
         ViewParameter parameter;
 
-        int index; // Index keeps track of the position of the current dataset (in case it is edited)
-
-
         public ViewExcerciseSingle()
         {
             this.InitializeComponent();
@@ -45,7 +42,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 }
                 else if (parameter.GetAction() == ViewParameter.Action.ExcerciseEdit)
                 {
-                    application.EditExcerciseCallback(excercise, index);
+                    application.EditExcerciseCallback(excercise);
                 }
             }
             else
@@ -63,7 +60,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             if (parameter.GetAction() == ViewParameter.Action.ExcerciseEdit)
             {
                 // Reset the Excercise
-                application.EditExcercise(excerciseTmp, index);
+                application.EditExcercise(excerciseTmp);
             }
             application.ShowExcercises();
         }
@@ -86,8 +83,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                         break;
                     case ViewParameter.Action.ExcerciseEdit:
                         excercise = param[0] as IExcercise;
-                        excerciseTmp = new Excercise(excercise.Name, excercise.Description, excercise.Categories, excercise.Images);
-                        index = (int)param[1];
+                        excerciseTmp = new Excercise(excercise.Name, excercise.Description, excercise.Categories);
                         categoriesList = param[2] as ObservableCollection<Category>;
                         break;
                     default:

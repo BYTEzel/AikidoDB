@@ -1,7 +1,6 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
 using AikidoTrainingDatabase.Domain;
 using System;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -21,8 +20,6 @@ namespace AikidoTrainingDatabase.Infrastructure.View
         IGui gui;
         ViewParameter parameter;
 
-        int index; // Index keeps track of the position of the current dataset (in case it is edited)
-
         public ViewCategorySingle()
         {
             InitializeComponent();
@@ -40,7 +37,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 }
                 else if (parameter.GetAction() == ViewParameter.Action.CategoryEdit)
                 {
-                    application.EditCategoryCallback(category, index);
+                    application.EditCategoryCallback(category);
                 }
             }
             else
@@ -58,7 +55,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             if (parameter.GetAction() == ViewParameter.Action.CategoryEdit)
             {
                 // Reset the category
-                application.EditCategoryCallback(categoryTmp, index);
+                application.EditCategoryCallback(categoryTmp);
             }
             application.ShowCategories();
         }
@@ -81,7 +78,6 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                     case ViewParameter.Action.CategoryEdit:
                         category = param[0] as ICategory;
                         categoryTmp = new Category(category.Name, category.Description);
-                        index = (int)param[1];
                         break;
                     default:
                         throw new NotImplementedException();

@@ -60,14 +60,14 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             database.Delete(category);
         }
 
-        public void EditCategory(ICategory categoryToEdit, int index)
+        public void EditCategory(ICategory categoryToEdit)
         {
-            gui.ShowEditCategory(categoryToEdit, index);
+            gui.ShowEditCategory(categoryToEdit);
         }
 
-        public void EditCategoryCallback(ICategory categoryEdited, int index)
+        public void EditCategoryCallback(ICategory categoryEdited)
         {
-            database.Edit(categoryEdited, index);
+            database.Edit(categoryEdited);
             ShowCategories();
         }
         
@@ -93,26 +93,26 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             }
         }
 
-        public async Task CreateDatabase(string PathDb)
+        public void CreateDatabase(string PathDb)
         {
             pathDb = PathDb;
-            await WriteDatabase(PathDb);
+            WriteDatabase(PathDb);
         }
 
-        public async Task WriteDatabase()
+        public void WriteDatabase()
         {
-            await WriteDatabase(pathDb);
+            WriteDatabase(pathDb);
         }
 
-        public async Task WriteDatabase(string PathDb)
+        public void WriteDatabase(string PathDb)
         {
-            await databaseIO.WriteDatabase(database, PathDb);
+            databaseIO.WriteDatabase(database, PathDb);
         }
 
-        public async Task ReadDatabase(string PathDb)
+        public void ReadDatabase(string PathDb)
         {
             pathDb = PathDb;
-            database = await databaseIO.ReadDatabase(PathDb);
+            database = databaseIO.ReadDatabase(PathDb);
         }
 
         public string GetDatabasePathExtension()
@@ -120,14 +120,14 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             return databaseIO.GetDatabasePathExtension();
         }
 
-        public void EditExcercise(IExcercise excerciseToEdit, int index)
+        public void EditExcercise(IExcercise excerciseToEdit)
         {
-            gui.ShowEditExcercise(excerciseToEdit, index);
+            gui.ShowEditExcercise(excerciseToEdit);
         }
 
-        public void EditExcerciseCallback(IExcercise excerciseEdited, int index)
+        public void EditExcerciseCallback(IExcercise excerciseEdited)
         {
-            database.Edit(excerciseEdited, index);
+            database.Edit(excerciseEdited);
             ShowExcercises();
         }
 

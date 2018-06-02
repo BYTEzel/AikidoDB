@@ -95,7 +95,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-            application.EditCategory((e.OriginalSource as Button).DataContext as Category, ListViewCategory.SelectedIndex);
+            application.EditCategory((e.OriginalSource as Button).DataContext as Category);
         }
     }
 }

@@ -67,11 +67,10 @@ namespace AikidoTrainingDatabase
         }
 
 
-        public void ShowEditCategory(ICategory category, int index)
+        public void ShowEditCategory(ICategory category)
         {
             ViewParameter parameter = new ViewParameter(ViewParameter.Action.CategoryEdit, this, application);
             parameter.AddParameter(category);
-            parameter.AddParameter(index);
             NavigateTo(Views.CategorySingle, parameter);
         }
 
@@ -153,11 +152,10 @@ namespace AikidoTrainingDatabase
             NavigateTo(Views.ExcerciseSingle, parameter);
         }
 
-        public void ShowEditExcercise(IExcercise excercise, int index)
+        public void ShowEditExcercise(IExcercise excercise)
         {
             ViewParameter parameter = new ViewParameter(ViewParameter.Action.ExcerciseEdit, this, application);
             parameter.AddParameter(excercise);
-            parameter.AddParameter(index);
             parameter.AddParameter(application.GetCategories());
             NavigateTo(Views.ExcerciseSingle, parameter);
         }

@@ -3,12 +3,11 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace AikidoTrainingDatabase.Domain
 {
-    public interface IExcercise : ISearchable
+    public interface IExcercise : ISearchable, IID
     {
-        string Name { get; set; }
+        /*string Name { get; set; }
         string Description { get; set; }
-
+        */
         ObservableCollection<Category> Categories { get; set; }
-        ObservableCollection<BitmapImage> Images { get; set; }
     }
 }

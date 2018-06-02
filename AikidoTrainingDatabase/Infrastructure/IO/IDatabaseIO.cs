@@ -6,7 +6,7 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
     interface IDatabaseIO
     {
         string GetDatabasePathExtension();
-        Task<IDatabase> ReadDatabase(string path);
-        Task WriteDatabase(IDatabase database, string fileName);
+        IDatabase ReadDatabase(string path);
+        void WriteDatabase(IDatabase database, string fileName);
     }
 }

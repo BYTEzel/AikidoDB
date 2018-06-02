@@ -104,12 +104,11 @@
     <Compile Include="Domain\Excercise.cs" />
     <Compile Include="Domain\ICategory.cs" />
     <Compile Include="Domain\IExcercise.cs" />
+    <Compile Include="Domain\IID.cs" />
     <Compile Include="Domain\ISearchable.cs" />
     <Compile Include="Infrastructure\Controls\TitleBox.xaml.cs" />
     <Compile Include="Infrastructure\Dialogs\DeleteDialog.cs" />
-    <Compile Include="Infrastructure\ExtendedClasses\DatabaseXml.cs" />
     <Compile Include="Infrastructure\ExtendedClasses\ExcerciseDisplay.cs" />
-    <Compile Include="Infrastructure\ExtendedClasses\ExcerciseXml.cs" />
     <Compile Include="Infrastructure\IGui.cs" />
     <Compile Include="Infrastructure\IO\IDatabaseIO.cs" />
     <Compile Include="Infrastructure\IO\ImageBase64.cs" />

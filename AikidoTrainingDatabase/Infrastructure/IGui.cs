@@ -31,14 +31,14 @@ namespace AikidoTrainingDatabase.Infrastructure
         /// Open a mask that allows to edit a certain category.
         /// </summary>
         /// <param name="category"></param>
-        void ShowEditCategory(ICategory category, int index);
+        void ShowEditCategory(ICategory category);
         /// <summary>
         /// Shows an overview of all the excercises currently present.
         /// </summary>
         /// <param name="exerciseCollection"></param>
         void ShowExcercisePage(ICollection exerciseCollection);
         void ShowCreateExcercise();
-        void ShowEditExcercise(IExcercise excercise, int index);
+        void ShowEditExcercise(IExcercise excercise);
         /// <summary>
         /// Navigate to a certain view without any parameter
         /// </summary>

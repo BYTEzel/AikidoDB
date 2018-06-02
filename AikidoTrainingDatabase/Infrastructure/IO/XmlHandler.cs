@@ -8,11 +8,9 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
 {
     class XmlHandler : IDatabaseIO
     {
-        DatabaseXml databaseXml;
 
         public XmlHandler()
         {
-            databaseXml = new DatabaseXml();
         }
 
         public string GetDatabasePathExtension()
@@ -20,22 +18,23 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
             return "database.xml";
         }
 
-        public async Task<IDatabase> ReadDatabase(string path)
+        public IDatabase ReadDatabase(string path)
         {
-            System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(DatabaseXml));
+            System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(Database));
             var file = File.OpenRead(path);
-            databaseXml = reader.Deserialize(file) as DatabaseXml;
+            Database database = reader.Deserialize(file) as Database;
             file.Dispose();
-            return await databaseXml.GetDatabase();
+            return database;
+            //return await databaseXml.GetDatabase();
         }
 
-        public async Task WriteDatabase(IDatabase database, string path)
+        public void WriteDatabase(IDatabase database, string path)
         {
-            System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(DatabaseXml));
-            await databaseXml.SetDatabase(database);
+            System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(Database));
+            //await databaseXml.SetDatabase(database);
 
             FileStream file = File.Create(path);
-            writer.Serialize(file, databaseXml);
+            writer.Serialize(file, database);
             file.Dispose();
         }
     }

@@ -38,7 +38,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         public ViewCreateLoadDb()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             DataContextChanged += (s, e) => Bindings.Update();
             ButtonsUi = new Button[] { ButtonMenuNew, ButtonSearchDatabase, ButtonLoadDatabase };            
         }
@@ -79,7 +79,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 var picker = new Windows.Storage.Pickers.FolderPicker();
                 picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.List;
                 picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
-                picker.FileTypeFilter.Add("." + fileDb.Split('.')[1]);
+                picker.FileTypeFilter.Add("*");
 
                 var folder = await picker.PickSingleFolderAsync();
                 if (folder != null)

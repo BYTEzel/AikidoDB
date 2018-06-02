@@ -8,13 +8,18 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
     {
         private ObservableCollection<Category> categories;
         private ObservableCollection<BitmapImage> images;
+
         private string name;
         private string description;
+        private int id;
 
+        public int ID { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public string Description { get => description; set => description = value; }
         public ObservableCollection<BitmapImage> Images { get => images; set => images = value; }
         public ObservableCollection<Category> Categories { get => categories; set => categories = value; }
+
+
 
         public BitmapImage ImageDisplay
         {
@@ -59,7 +64,6 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
             Name = excercise.Name;
             Description = excercise.Description;
             Categories = excercise.Categories;
-            Images = excercise.Images;
         }
     }
 }
