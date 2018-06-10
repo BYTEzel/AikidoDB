@@ -67,6 +67,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             finally
             {
                 EnableUi();
+                ButtonLoadDatabase.Focus(FocusState.Programmatic);
             }
         }
 
@@ -94,6 +95,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             finally
             {
                 EnableUi();
+                ButtonLoadDatabase.Focus(FocusState.Programmatic);
             }
         }
 

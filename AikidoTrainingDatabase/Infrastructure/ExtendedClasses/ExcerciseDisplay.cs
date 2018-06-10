@@ -61,6 +61,7 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
 
         public ExcerciseDisplay(IExcercise excercise)
         {
+            ID = excercise.ID;
             Name = excercise.Name;
             Description = excercise.Description;
             Categories = excercise.Categories;

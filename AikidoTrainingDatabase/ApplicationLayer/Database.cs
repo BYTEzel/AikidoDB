@@ -71,7 +71,16 @@ namespace AikidoTrainingDatabase.ApplicationLayer
 
         public void Delete(IExcercise excercise)
         {
-            excerciseList.Remove(excercise as Excercise);
+            for (int e = 0; e < excerciseList.Count; e++)
+            {
+                if (excercise.ID == excerciseList[e].ID)
+                {
+                    excerciseList.RemoveAt(e);
+                    excerciseId.DeleteEnty(excercise);
+                    break;
+                }
+            }
+                        
         }
 
         public void Edit(ICategory category)

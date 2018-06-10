@@ -60,6 +60,11 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             database.Delete(category);
         }
 
+        public void DeleteExcercise(IExcercise excercise)
+        {
+            database.Delete(excercise);
+        }
+
         public void EditCategory(ICategory categoryToEdit)
         {
             gui.ShowEditCategory(categoryToEdit);

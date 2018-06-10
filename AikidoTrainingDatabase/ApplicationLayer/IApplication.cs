@@ -19,6 +19,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         void EditCategoryCallback(ICategory categoryEdited);
         void EditExcerciseCallback(IExcercise excerciseEdited);
         void DeleteCategory(ICategory category);
+        void DeleteExcercise(IExcercise excercise);
         string GetDatabasePathExtension();
         ObservableCollection<Category> GetCategories();
         ObservableCollection<Excercise> GetExcercises();

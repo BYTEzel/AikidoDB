@@ -1,8 +1,10 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
 using AikidoTrainingDatabase.Domain;
+using AikidoTrainingDatabase.Infrastructure.Dialogs;
 using AikidoTrainingDatabase.Infrastructure.ExtendedClasses;
 using System;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -15,7 +17,6 @@ namespace AikidoTrainingDatabase.Infrastructure.View
     /// </summary>
     public sealed partial class ViewExcercise : Page
     {
-        private ObservableCollection<Excercise> excerciseCollection;
         public ObservableCollection<ExcerciseDisplay> excerciseCollectionDisplay;
         private IApplication application;
         private IGui gui;
@@ -40,8 +41,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 switch (parameter.GetAction())
                 {
                     case ViewParameter.Action.ExcerciseShow:
-                        excerciseCollection = param[0] as ObservableCollection<Excercise>;
-                        CastExcerciseCollection(excerciseCollection);
+                        CastExcerciseCollection(param[0] as ObservableCollection<Excercise>);
                         break;
                     default:
                         throw new NotImplementedException();
@@ -59,15 +59,54 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             }
         }
 
-        private void ButtonBack_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             ViewParameter parameter = new ViewParameter(ViewParameter.Action.MainMenuShow, gui, application);
             gui.NavigateTo(Views.Main, parameter);
         }
 
-        private void ButtonNew_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void ButtonNew_Click(object sender, RoutedEventArgs e)
         {
             application.CreateExcercise();
+        }
+
+        private void ListViewExcercise_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var item in e.AddedItems)
+            {
+                ListViewItem lvi = (sender as ListView).ContainerFromItem(item) as ListViewItem;
+                lvi.ContentTemplate = (DataTemplate)this.Resources["Detail"];
+            }
+            //Remove DataTemplate for unselected items
+            foreach (var item in e.RemovedItems)
+            {
+                ListViewItem lvi = (sender as ListView).ContainerFromItem(item) as ListViewItem;
+                lvi.ContentTemplate = (DataTemplate)this.Resources["Normal"];
+            }
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the element on which the button was pressed
+            Button button = e.OriginalSource as Button;
+            ExcerciseDisplay selectedExcercise = (e.OriginalSource as Button).DataContext as ExcerciseDisplay;
+            DisplayDeleteDataDialog(selectedExcercise);
+        }
+
+        private async void DisplayDeleteDataDialog(IExcercise excercise)
+        {
+            ContentDialogResult result = await (new DeleteDialog()).GetDialog().ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                application.DeleteExcercise(excercise);
+                // Manually refresh the displayed exercises
+                CastExcerciseCollection(application.GetExcercises());
+            }
         }
     }
 }
