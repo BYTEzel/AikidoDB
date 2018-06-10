@@ -83,8 +83,8 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                         break;
                     case ViewParameter.Action.ExcerciseEdit:
                         excercise = param[0] as IExcercise;
-                        excerciseTmp = new Excercise(excercise.Name, excercise.Description, excercise.Categories);
-                        categoriesList = param[2] as ObservableCollection<Category>;
+                        excerciseTmp = new Excercise(excercise.ID, excercise.Name, excercise.Description, excercise.Categories);
+                        categoriesList = param[1] as ObservableCollection<Category>;
                         break;
                     default:
                         throw new NotImplementedException();

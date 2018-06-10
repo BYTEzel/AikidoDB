@@ -110,7 +110,16 @@ namespace AikidoTrainingDatabase.ApplicationLayer
 
         public void Edit(IExcercise excercise)
         {
-            //excerciseList[index] = excercise as Excercise;
+            for (int e=0; e < excerciseList.Count; e++)
+            {
+                if (excerciseList[e].ID == excercise.ID)
+                {
+                    excerciseList[e] = excercise as Excercise;
+                    break;
+                }
+            }
+
+            // Look for all places where the the excercise may be used.
         }
 
     }

@@ -87,7 +87,8 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            ExcerciseDisplay excerciseDisplayTmp = (e.OriginalSource as Button).DataContext as ExcerciseDisplay;
+            application.EditExcercise(excerciseDisplayTmp.GetExcercise());
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)

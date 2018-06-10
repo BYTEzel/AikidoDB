@@ -59,6 +59,11 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
             }
         }
 
+        public Excercise GetExcercise()
+        {
+            return new Excercise(ID, Name, Description, Categories);
+        }
+
         public ExcerciseDisplay(IExcercise excercise)
         {
             ID = excercise.ID;
