@@ -18,9 +18,7 @@ namespace AikidoTrainingDatabase.Infrastructure.ExtendedClasses
         public string Description { get => description; set => description = value; }
         public ObservableCollection<BitmapImage> Images { get => images; set => images = value; }
         public ObservableCollection<Category> Categories { get => categories; set => categories = value; }
-
-
-
+        
         public BitmapImage ImageDisplay
         {
             get

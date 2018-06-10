@@ -29,8 +29,8 @@
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition Height="100"/>
                         <RowDefinition Height="400"/>
+                        <RowDefinition Height="200"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
@@ -40,9 +40,10 @@
                     <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" Margin="10,0,0,10"/>
                     <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Text="{x:Bind excercise.Name, Mode=TwoWay}" Margin="0,0,0,10"/>
                     <TextBlock Text="Description" Grid.Row="1" Grid.Column="0" Margin="10,0,0,10"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="{x:Bind excercise.Description, Mode=TwoWay}" Margin="0,0,0,10"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{x:Bind excercise.Description, Mode=TwoWay}" Margin="0,0,0,10"
+                             AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="390"/>
                     <TextBlock Text="Categories" Grid.Row="2" Grid.Column="0" Margin="10,13,0,0"/>
-                    <ListView x:Name="ListViewCategories" Grid.Row="2" Grid.Column="1" Height="400"
+                    <ListView x:Name="ListViewCategories" Grid.Row="2" Grid.Column="1" Height="200"
                               ItemsSource="{x:Bind excercise.Categories, Mode=OneWay}"       
                               BorderBrush="Gray" BorderThickness="2"
                               VerticalAlignment="Top" ItemTemplate="{Binding Name}"
