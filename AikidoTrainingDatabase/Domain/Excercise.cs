@@ -75,7 +75,7 @@ namespace AikidoTrainingDatabase.Domain
             this.id = id;
             Name = name;
             Description = description;
-            Categories = categories;
+            Categories = new ObservableCollection<Category>(categories);   // Do a deep copy
         }
         #endregion
     }

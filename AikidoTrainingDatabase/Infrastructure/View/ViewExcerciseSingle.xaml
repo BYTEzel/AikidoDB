@@ -45,6 +45,7 @@
                     <TextBlock Text="Categories" Grid.Row="2" Grid.Column="0" Margin="10,13,0,0"/>
                     <ListView x:Name="ListViewCategories" Grid.Row="2" Grid.Column="1" Height="200"
                               ItemsSource="{x:Bind excercise.Categories, Mode=OneWay}"       
+                              SelectedItem="{x:Bind excercise.Categories, Mode=OneWay}"
                               BorderBrush="Gray" BorderThickness="2"
                               VerticalAlignment="Top" ItemTemplate="{Binding Name}"
                               FlyoutBase.AttachedFlyout="{StaticResource FlyoutCategorySelection}"
