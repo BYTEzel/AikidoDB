@@ -106,6 +106,8 @@
     <Compile Include="Domain\IExcercise.cs" />
     <Compile Include="Domain\IID.cs" />
     <Compile Include="Domain\ISearchable.cs" />
+    <Compile Include="Domain\ITraining.cs" />
+    <Compile Include="Domain\Training.cs" />
     <Compile Include="Infrastructure\Controls\TitleBox.xaml.cs" />
     <Compile Include="Infrastructure\Dialogs\DeleteDialog.cs" />
     <Compile Include="Infrastructure\ExtendedClasses\ExcerciseDisplay.cs" />
@@ -133,6 +135,12 @@
       <DependentUpon>ViewExcerciseSingle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\View\ViewParameter.cs" />
+    <Compile Include="Infrastructure\View\ViewTraining.xaml.cs">
+      <DependentUpon>ViewTraining.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\View\ViewTrainingSingle.xaml.cs">
+      <DependentUpon>ViewTrainingSingle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -188,6 +196,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Infrastructure\View\ViewExcerciseSingle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Infrastructure\View\ViewTraining.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Infrastructure\View\ViewTrainingSingle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

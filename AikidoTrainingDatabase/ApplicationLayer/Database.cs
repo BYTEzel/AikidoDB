@@ -14,6 +14,8 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         private IdDatabase categoryId;
         private ObservableCollection<Excercise> excerciseList;
         private IdDatabase excerciseId;
+        private ObservableCollection<Training> trainingList;
+        private IdDatabase trainingId;
 
         public Database()
         {
@@ -27,6 +29,9 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         public IdDatabase CategoryId { get => categoryId; set => categoryId = value; }
         public ObservableCollection<Excercise> ExcerciseList { get => excerciseList; set => excerciseList = value; }
         public IdDatabase ExcerciseId { get => excerciseId; set => excerciseId = value; }
+        public ObservableCollection<Training> TrainingList { get => trainingList; set => trainingList = value; }
+        public IdDatabase TrainingId { get => trainingId; set => trainingId = value; }
+
 
         public void Create(ICategory category)
         {
@@ -38,6 +43,12 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         {
             excercise.ID = excerciseId.CreateId();
             excerciseList.Add(excercise as Excercise);
+        }
+
+        public void Create(ITraining training)
+        {
+            training.ID = trainingId.CreateId();
+            trainingList.Add(training as Training);
         }
 
         public void Delete(ICategory category)
@@ -71,6 +82,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
 
         public void Delete(IExcercise excercise)
         {
+            // Delete the excercise entry from the excercise list
             for (int e = 0; e < excerciseList.Count; e++)
             {
                 if (excercise.ID == excerciseList[e].ID)
@@ -80,8 +92,38 @@ namespace AikidoTrainingDatabase.ApplicationLayer
                     break;
                 }
             }
+
+            // Check the training list for occurences of this excercise
+            foreach (Training t in trainingList)
+            {
+                for (int e = t.Excercises.Count-1; e >= 0; e--)
+                {
+                    if(excercise.ID == t.Excercises[e].ID)
+                    {
+                        // An excercise may occur multiple times in a training, therefore omit the break here
+                        t.Excercises.RemoveAt(e);
+                    }
+                }
+            }
                         
         }
+
+
+        public void Delete(ITraining training)
+        {
+            // Since the training is the upmost element, we do not need to check for 
+            // uses of a training in other tables.
+            for (int t = 0; t < trainingList.Count; t++)
+            {
+                if (training.ID == trainingList[t].ID)
+                {
+                    trainingList.RemoveAt(t);
+                    excerciseId.DeleteEnty(training);
+                    break;
+                }
+            }
+        }
+
 
         public void Edit(ICategory category)
         {
@@ -108,6 +150,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             }
         }
 
+
         public void Edit(IExcercise excercise)
         {
             for (int e=0; e < excerciseList.Count; e++)
@@ -120,6 +163,29 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             }
 
             // Look for all places where the the excercise may be used.
+            for (int t = 0; t < trainingList.Count; t++)
+            {
+                for (int e = 0; e < excerciseList[t].Categories.Count; t++)
+                {
+                    if (trainingList[t].Excercises[e].ID == excercise.ID)
+                    {
+                        trainingList[t].Excercises[e] = excercise as Excercise;
+                    }
+                }
+            }
+        }
+
+
+        public void Edit(ITraining training)
+        {
+            for (int t = 0; t < trainingList.Count; t++)
+            {
+                if (trainingList[t].ID == training.ID)
+                {
+                    trainingList[t] = training as Training;
+                    break;
+                }
+            }
         }
 
     }
@@ -151,6 +217,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
                 return id;
             }
         }
+
 
         public IdDatabase()
         {

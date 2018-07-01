@@ -5,7 +5,7 @@ using System.Collections;
 namespace AikidoTrainingDatabase.Infrastructure
 {
     // Collect all the possible views to be selected for navigation in NavigateTo
-    public enum Views { CreateLoadDatabase, Main, Category, CategorySingle, Excercise, ExcerciseSingle}
+    public enum Views { CreateLoadDatabase, Main, Category, CategorySingle, Excercise, ExcerciseSingle, Training, TrainingSingle}
 
     public interface IGui
     {
@@ -39,6 +39,13 @@ namespace AikidoTrainingDatabase.Infrastructure
         void ShowExcercisePage(ICollection exerciseCollection);
         void ShowCreateExcercise();
         void ShowEditExcercise(IExcercise excercise);
+        /// <summary>
+        /// Shows an overview of all the trainings currently present.
+        /// </summary>
+        /// <param name="trainingCollection"></param>
+        void ShowTrainingPage(ICollection trainingCollection);
+        void ShowCreateTraining();
+        void ShowEditTraining(ITraining training);
         /// <summary>
         /// Navigate to a certain view without any parameter
         /// </summary>
