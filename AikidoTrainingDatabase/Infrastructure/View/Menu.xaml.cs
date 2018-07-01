@@ -23,7 +23,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private void ButtonTraining_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
+            application.ShowTrainings();
         }
 
         private void ButtonExcercise_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
