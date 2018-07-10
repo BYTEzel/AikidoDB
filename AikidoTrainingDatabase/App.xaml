@@ -51,5 +51,9 @@
             <Setter Property="Content" Value="&#xE10A;"/>
         </Style>
 
+        <Style TargetType="ToggleSwitch" x:Key="SwitchEdit">
+            <Setter Property="Header" Value="Edit data"/>
+        </Style>
+
     </Application.Resources>
 </Application>

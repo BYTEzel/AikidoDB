@@ -57,12 +57,14 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            Training trainingTmp = (e.OriginalSource as Button).DataContext as Training;
+            application.EditTraining(trainingTmp);
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            Training trainingTmp = (e.OriginalSource as Button).DataContext as Training;
+            application.DeleteTraining(trainingTmp);
         }
 
         private void ButtonNew_Click(object sender, RoutedEventArgs e)
@@ -72,7 +74,17 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private void ListViewTraining_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            foreach (var item in e.AddedItems)
+            {
+                ListViewItem lvi = (sender as ListView).ContainerFromItem(item) as ListViewItem;
+                lvi.ContentTemplate = (DataTemplate)this.Resources["Detail"];
+            }
+            //Remove DataTemplate for unselected items
+            foreach (var item in e.RemovedItems)
+            {
+                ListViewItem lvi = (sender as ListView).ContainerFromItem(item) as ListViewItem;
+                lvi.ContentTemplate = (DataTemplate)this.Resources["Normal"];
+            }
         }
         #endregion
     }

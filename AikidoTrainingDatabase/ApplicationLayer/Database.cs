@@ -23,6 +23,8 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             categoryId = new IdDatabase();
             excerciseList = new ObservableCollection<Excercise>();
             excerciseId = new IdDatabase();
+            trainingList = new ObservableCollection<Training>();
+            trainingId = new IdDatabase();
         }
 
         public ObservableCollection<Category> CategoryList { get => categoryList; set => categoryList = value;  }

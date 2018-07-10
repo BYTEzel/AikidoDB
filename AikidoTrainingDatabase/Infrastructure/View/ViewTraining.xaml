@@ -18,7 +18,7 @@
         <DataTemplate x:Name="Normal" x:Key="Normal">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Name}" Width="200" VerticalAlignment="Center"/>
-                <TextBlock Text="{Binding CategoriesDisplay}" Width="200" VerticalAlignment="Center" />
+                <!--<TextBlock Text="{Binding CategoriesDisplay}" Width="200" VerticalAlignment="Center" />-->
                 <TextBlock Text="{Binding Description}" VerticalAlignment="Center" Width="500" Height="45" Margin="0,17,0,0"/>
             </StackPanel>
         </DataTemplate>
@@ -26,7 +26,7 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Name}" Width="200" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding CategoriesDisplay}" Width="200" VerticalAlignment="Center"/>
+                    <!--<TextBlock Text="{Binding CategoriesDisplay}" Width="200" VerticalAlignment="Center"/> -->
                     <TextBlock Text="{Binding Description}" Width="500" Height="45" VerticalAlignment="Center" Margin="0,17,0,0"/>
                     <Button x:Name="ButtonEdit" Style="{StaticResource ButtonMenuEdit}" Click="ButtonEdit_Click" />
                     <Button x:Name="ButtonDelete"  Style="{StaticResource ButtonMenuDelete}" Click="ButtonDelete_Click"/>

@@ -22,9 +22,21 @@ namespace AikidoTrainingDatabase.Infrastructure.View
     /// </summary>
     public sealed partial class ViewTrainingSingle : Page
     {
+        public bool Editable;
         public ViewTrainingSingle()
         {
             this.InitializeComponent();
+            Editable = false;
+        }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SwitchEdit_Toggled(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
