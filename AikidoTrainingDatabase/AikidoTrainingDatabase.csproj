@@ -108,7 +108,6 @@
     <Compile Include="Domain\ISearchable.cs" />
     <Compile Include="Domain\ITraining.cs" />
     <Compile Include="Domain\Training.cs" />
-    <Compile Include="Infrastructure\Controls\TitleBox.xaml.cs" />
     <Compile Include="Infrastructure\Dialogs\DeleteDialog.cs" />
     <Compile Include="Infrastructure\ExtendedClasses\ExcerciseDisplay.cs" />
     <Compile Include="Infrastructure\IGui.cs" />
@@ -167,10 +166,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Infrastructure\Controls\TitleBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Infrastructure\View\Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

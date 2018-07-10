@@ -2,10 +2,8 @@
     x:Class="AikidoTrainingDatabase.Infrastructure.View.ViewCreateLoadDb"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AikidoTrainingDatabase.Infrastructure.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:UserControls="using:AikidoTrainingDatabase.Infrastructure.Controls"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -14,7 +12,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <UserControls:TitleBox Title="Load or create a new database" Grid.Row="0"/>
+        <TextBlock Text="Load or create a new database" Style="{StaticResource TitleBox}" Grid.Row="0"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
             <Button x:Name="ButtonMenuNew" Style="{StaticResource ButtonMenuNew}" Click="ButtonNewDatabase_Click"/>
             <Button x:Name="ButtonSearchDatabase" Style="{StaticResource ButtonIcon}" Content="&#xE094;" Click="ButtonSearchDatabase_Click"/>

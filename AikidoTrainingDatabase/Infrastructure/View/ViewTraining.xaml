@@ -2,8 +2,6 @@
     x:Class="AikidoTrainingDatabase.Infrastructure.View.ViewTraining"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AikidoTrainingDatabase.Infrastructure.View"
-    xmlns:UserControls="using:AikidoTrainingDatabase.Infrastructure.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -38,7 +36,7 @@
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical">
-            <UserControls:TitleBox Title="Training" />
+            <TextBlock Text="Training" Style="{StaticResource TitleBox}"/>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="ButtonBack" Style="{StaticResource ButtonMenuBack}" Click="ButtonBack_Click"/>
                 <Button x:Name="ButtonNew" Style="{StaticResource ButtonMenuNew}" Click="ButtonNew_Click"/>
