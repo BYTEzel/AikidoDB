@@ -44,6 +44,7 @@ namespace AikidoTrainingDatabase.Infrastructure
         /// </summary>
         /// <param name="trainingCollection"></param>
         void ShowTrainingPage(ICollection trainingCollection);
+        void ShowTrainingSingle(ITraining training);
         void ShowCreateTraining();
         void ShowEditTraining(ITraining training);
         /// <summary>
