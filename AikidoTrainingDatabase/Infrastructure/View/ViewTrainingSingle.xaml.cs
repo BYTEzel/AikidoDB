@@ -1,5 +1,6 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
 using AikidoTrainingDatabase.Domain;
+using AikidoTrainingDatabase.Infrastructure.Dialogs;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -52,8 +53,21 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private void SwitchEdit_Toggled(object sender, RoutedEventArgs e)
         {
-
+            // Nothing to to do here
         }
+
+
+        private async void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var result = await (new DeleteDialog().GetDialog().ShowAsync());
+
+            if (result == ContentDialogResult.Primary)
+            {
+                application.DeleteTraining(training);
+                application.ShowTrainings();
+            }
+        }
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
