@@ -2,6 +2,7 @@
 using AikidoTrainingDatabase.Domain;
 using AikidoTrainingDatabase.Infrastructure.Dialogs;
 using System;
+using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -21,6 +22,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
         private ViewParameter parameter;
         private IGui gui;
         private IApplication application;
+        public ObservableCollection<Excercise> excercisesAll;
 
         public ViewTrainingSingle()
         {
@@ -83,15 +85,18 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 switch (parameter.GetAction())
                 {
                     case ViewParameter.Action.TrainingCreate:
+                        excercisesAll = param[0] as ObservableCollection<Excercise>;
                         training = new Training();
                         Editable = true;
                         break;
                     case ViewParameter.Action.TrainingShow:
                         training = param[0] as ITraining;
+                        excercisesAll = param[1] as ObservableCollection<Excercise>;
                         Editable = false;
                         break;
                     case ViewParameter.Action.TrainingEdit:
                         training = param[0] as ITraining;
+                        excercisesAll = param[1] as ObservableCollection<Excercise>;
                         trainingTmp = new Training(training.ID, training.Name, training.Description, training.Excercises);
                         Editable = true;
                         break;
@@ -100,6 +105,16 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 }
             }
             base.OnNavigatedTo(e);
+        }
+
+        private void ButtonExcerciseAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonExcerciseDelete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

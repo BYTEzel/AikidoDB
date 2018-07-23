@@ -60,7 +60,6 @@
             <Setter Property="FontSize" Value="60"/>
             <Setter Property="Foreground" Value="CornflowerBlue"/>
             <Setter Property="Margin" Value="5,10,0,10"/>
-        </Style>
-
+        </Style>        
     </Application.Resources>
 </Application>

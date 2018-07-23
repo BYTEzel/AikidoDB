@@ -64,6 +64,7 @@ namespace AikidoTrainingDatabase
         {
             ViewParameter par = new ViewParameter(ViewParameter.Action.TrainingShow, this, application);
             par.AddParameter(training);
+            par.AddParameter(application.GetExcercises());
             NavigateTo(Views.TrainingSingle, par);
         }
 
