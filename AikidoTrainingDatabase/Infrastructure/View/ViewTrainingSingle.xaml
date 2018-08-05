@@ -60,12 +60,14 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+
+                        
                         <Button x:Name="ButtonExcerciseAdd" Style="{StaticResource ButtonMenuNew}" Click="ButtonExcerciseAdd_Click">
                             <Button.Flyout>
                                 <Flyout Placement="Full">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Excercise selection"/>
-                                        <ListView x:Name="ListViewFlyoutExcercisesAll" DataContext="{x:Bind excercisesAll, Mode=TwoWay}" ItemTemplate="{StaticResource Normal}"/>
+                                        <ListView x:Name="ListViewFlyoutExcercisesAll" ItemsSource="{x:Bind excercisesAll}" SelectionChanged="ListViewFlyoutExcercisesAll_SelectionChanged" ItemTemplate="{StaticResource Normal}" />
                                     </StackPanel>
                                 </Flyout>
                             </Button.Flyout>
@@ -73,7 +75,7 @@
                         <Button x:Name="ButtonExcerciseDelete" Style="{StaticResource ButtonMenuDelete}" Click="ButtonExcerciseDelete_Click"/>
                     </StackPanel>
                     <TextBlock Text="Excercises" Margin="0,0,20,0" Grid.Row="1" Grid.Column="0"/>
-                    <ListView x:Name="ListExcercises" Grid.Row="1" Grid.Column="1" DataContext="{x:Bind training.Excercises}" />
+                    <ListView x:Name="ListExcercises" Grid.Row="1" Grid.Column="1" ItemsSource="{x:Bind training.Excercises}" ItemTemplate="{StaticResource Normal}" />
                 </Grid>
             </StackPanel>
         </StackPanel>

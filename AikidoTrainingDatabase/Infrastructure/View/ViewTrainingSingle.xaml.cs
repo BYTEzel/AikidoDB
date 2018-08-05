@@ -24,6 +24,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
         private IApplication application;
         public ObservableCollection<Excercise> excercisesAll;
 
+
         public ViewTrainingSingle()
         {
             this.InitializeComponent();
@@ -115,6 +116,11 @@ namespace AikidoTrainingDatabase.Infrastructure.View
         private void ButtonExcerciseDelete_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        
+        private void ListViewFlyoutExcercisesAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            training.Excercises.Add(ListViewFlyoutExcercisesAll.SelectedItem as Excercise);
         }
     }
 }
