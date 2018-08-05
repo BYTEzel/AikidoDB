@@ -15,6 +15,7 @@
         -->
         <DataTemplate x:Name="Normal" x:Key="Normal">
             <StackPanel Orientation="Horizontal">
+                <TextBlock Text="&#xE700;" FontFamily="Segoe MDL2 Assets" Width="50" VerticalAlignment="Center" />
                 <TextBlock Text="{Binding Name}" Width="200" VerticalAlignment="Center"/>
                 <!--<TextBlock Text="{Binding CategoriesDisplay}" Width="200" VerticalAlignment="Center" />-->
                 <TextBlock Text="{Binding Description}" VerticalAlignment="Center" Width="500" Height="45" Margin="0,17,0,0"/>
@@ -32,7 +33,6 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
@@ -60,9 +60,7 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
-
-                        
-                        <Button x:Name="ButtonExcerciseAdd" Style="{StaticResource ButtonMenuNew}" Click="ButtonExcerciseAdd_Click">
+                        <Button x:Name="ButtonExcerciseAdd" Style="{StaticResource ButtonMenuNew}" IsEnabled="{x:Bind SwitchEdit.IsOn, Mode=OneWay}" Click="ButtonExcerciseAdd_Click">
                             <Button.Flyout>
                                 <Flyout Placement="Full">
                                     <StackPanel Orientation="Vertical">
@@ -72,10 +70,10 @@
                                 </Flyout>
                             </Button.Flyout>
                         </Button>
-                        <Button x:Name="ButtonExcerciseDelete" Style="{StaticResource ButtonMenuDelete}" Click="ButtonExcerciseDelete_Click"/>
+                        <Button x:Name="ButtonExcerciseDelete" Style="{StaticResource ButtonMenuDelete}" IsEnabled="{x:Bind SwitchEdit.IsOn, Mode=OneWay}" Click="ButtonExcerciseDelete_Click"/>
                     </StackPanel>
                     <TextBlock Text="Excercises" Margin="0,0,20,0" Grid.Row="1" Grid.Column="0"/>
-                    <ListView x:Name="ListExcercises" Grid.Row="1" Grid.Column="1" ItemsSource="{x:Bind training.Excercises}" ItemTemplate="{StaticResource Normal}" />
+                    <ListView x:Name="ListExcercises" Grid.Row="1" Grid.Column="1" ItemsSource="{x:Bind training.Excercises}" ItemTemplate="{StaticResource Normal}" IsEnabled="{x:Bind SwitchEdit.IsOn, Mode=OneWay}" CanDragItems="True" AllowDrop="True" CanReorderItems="True"/>
                 </Grid>
             </StackPanel>
         </StackPanel>

@@ -5,6 +5,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
 {
     public interface IApplication
     {
+        void AddExcerciseToTraining(ITraining training, IExcercise excercise);
         void CreateDatabase(string PathDb);
         void CreateCategory();
         void CreateExcercise();
@@ -28,6 +29,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         void DeleteCategory(ICategory category);
         void DeleteExcercise(IExcercise excercise);
         void DeleteTraining(ITraining training);
+        void DeleteExcerciseOfTraining(ITraining training, int excerciseIndex);
         string GetDatabasePathExtension();
         ObservableCollection<Category> GetCategories();
         ObservableCollection<Excercise> GetExcercises();

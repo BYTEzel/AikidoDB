@@ -34,6 +34,11 @@ namespace AikidoTrainingDatabase.ApplicationLayer
 
 
         #region Create
+        public void AddExcerciseToTraining(ITraining training, IExcercise excercise)
+        {
+            database.AddExcercise(training, excercise);
+        }
+
         public void CreateCategory()
         {
             gui.ShowCreateCategory();
@@ -82,6 +87,11 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         public void DeleteTraining(ITraining training)
         {
             database.Delete(training);
+        }
+
+        public void DeleteExcerciseOfTraining(ITraining training, int excerciseIndex)
+        {
+            database.Delete(training, excerciseIndex);
         }
         #endregion
 

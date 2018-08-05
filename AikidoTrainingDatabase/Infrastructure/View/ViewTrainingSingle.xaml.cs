@@ -110,17 +110,17 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private void ButtonExcerciseAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            // Event gets handled in the flyout -> ListViewFlyoutExcercisesAll_SelectionChanged
         }
 
         private void ButtonExcerciseDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            application.DeleteExcerciseOfTraining(training, ListExcercises.SelectedIndex);
         }
         
         private void ListViewFlyoutExcercisesAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            training.Excercises.Add(ListViewFlyoutExcercisesAll.SelectedItem as Excercise);
+            application.AddExcerciseToTraining(training, ListViewFlyoutExcercisesAll.SelectedItem as Excercise);
         }
     }
 }

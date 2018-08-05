@@ -35,6 +35,11 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         public IdDatabase TrainingId { get => trainingId; set => trainingId = value; }
 
 
+        public void AddExcercise(ITraining training, IExcercise excercise)
+        {
+            training.Excercises.Add(excercise as Excercise);
+        }
+
         public void Create(ICategory category)
         {
             category.ID = categoryId.CreateId();
@@ -124,6 +129,11 @@ namespace AikidoTrainingDatabase.ApplicationLayer
                     break;
                 }
             }
+        }
+
+        public void Delete(ITraining training, int excerciseIndex)
+        {
+            training.Excercises.RemoveAt(excerciseIndex);
         }
 
 
