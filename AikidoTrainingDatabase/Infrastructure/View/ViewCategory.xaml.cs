@@ -19,6 +19,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
         public ICollection categoryCollection;
         private IApplication application;
         private IGui gui;
+
         public ViewCategory()
         {
             InitializeComponent();
@@ -29,8 +30,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             ViewParameter parameter = new ViewParameter(ViewParameter.Action.MainMenuShow, gui, application);
             gui.NavigateTo(Views.Main, parameter);
         }
-
-
+        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Object[] param = e.Parameter as Object[];
@@ -47,8 +47,6 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                     case ViewParameter.Action.CategoryShow:
                         categoryCollection = param[0] as ICollection;
                         break;
-                    case ViewParameter.Action.CategoryCreate:
-                        throw new NotImplementedException();
                     default:
                         throw new NotImplementedException();
                 }

@@ -53,6 +53,21 @@ namespace AikidoTrainingDatabase
             NavigateTo(Views.Excercise, par);
         }
 
+        public void ShowTrainingPage(ICollection trainingCollection)
+        {
+            ViewParameter par = new ViewParameter(ViewParameter.Action.TrainingShow, this, application);
+            par.AddParameter(trainingCollection);
+            NavigateTo(Views.Training, par);
+        }
+
+        public void ShowTrainingSingle(ITraining training)
+        {
+            ViewParameter par = new ViewParameter(ViewParameter.Action.TrainingShow, this, application);
+            par.AddParameter(training);
+            par.AddParameter(application.GetExcercises());
+            NavigateTo(Views.TrainingSingle, par);
+        }
+
         public void ShowMainMenu()
         {
             ViewParameter parameter = new ViewParameter(ViewParameter.Action.Empty, this, application);
@@ -66,12 +81,41 @@ namespace AikidoTrainingDatabase
             NavigateTo(Views.CategorySingle, parameter);
         }
 
+        public void ShowCreateExcercise()
+        {
+            ViewParameter parameter = new ViewParameter(ViewParameter.Action.ExcerciseCreate, this, application);
+            parameter.AddParameter(application.GetCategories());
+            NavigateTo(Views.ExcerciseSingle, parameter);
+        }
+
+        public void ShowCreateTraining()
+        {
+            ViewParameter parameter = new ViewParameter(ViewParameter.Action.TrainingCreate, this, application);
+            parameter.AddParameter(application.GetExcercises());
+            NavigateTo(Views.TrainingSingle, parameter);
+        }
 
         public void ShowEditCategory(ICategory category)
         {
             ViewParameter parameter = new ViewParameter(ViewParameter.Action.CategoryEdit, this, application);
             parameter.AddParameter(category);
             NavigateTo(Views.CategorySingle, parameter);
+        }
+        
+        public void ShowEditExcercise(IExcercise excercise)
+        {
+            ViewParameter parameter = new ViewParameter(ViewParameter.Action.ExcerciseEdit, this, application);
+            parameter.AddParameter(excercise);
+            parameter.AddParameter(application.GetCategories());
+            NavigateTo(Views.ExcerciseSingle, parameter);
+        }
+
+        public void ShowEditTraining(ITraining training)
+        {
+            ViewParameter parameter = new ViewParameter(ViewParameter.Action.TrainingEdit, this, application);
+            parameter.AddParameter(training);
+            parameter.AddParameter(application.GetExcercises());
+            NavigateTo(Views.TrainingSingle, parameter);
         }
 
         public void NavigateTo(Views view)
@@ -98,6 +142,12 @@ namespace AikidoTrainingDatabase
                         break;
                     case Views.ExcerciseSingle:
                         Frame.Navigate(typeof(ViewExcerciseSingle), paramObj);
+                        break;
+                    case Views.Training:
+                        Frame.Navigate(typeof(ViewTraining), paramObj);
+                        break;
+                    case Views.TrainingSingle:
+                        Frame.Navigate(typeof(ViewTrainingSingle), paramObj);
                         break;
                     case Views.Main:
                         Frame.Navigate(typeof(Menu), paramObj);
@@ -128,6 +178,12 @@ namespace AikidoTrainingDatabase
                     case Views.CreateLoadDatabase:
                         Frame.Navigate(typeof(ViewCreateLoadDb));
                         break;
+                    case Views.Training:
+                        Frame.Navigate(typeof(ViewTraining));
+                        break;
+                    case Views.TrainingSingle:
+                        Frame.Navigate(typeof(ViewTrainingSingle));
+                        break;
                     default:
                         throw new NotImplementedException();
                 }
@@ -143,21 +199,6 @@ namespace AikidoTrainingDatabase
         {
             // The writing in this case is threaded, so no await needed
             //await application.WriteDatabase();
-        }
-
-        public void ShowCreateExcercise()
-        {
-            ViewParameter parameter = new ViewParameter(ViewParameter.Action.ExcerciseCreate, this, application);
-            parameter.AddParameter(application.GetCategories());
-            NavigateTo(Views.ExcerciseSingle, parameter);
-        }
-
-        public void ShowEditExcercise(IExcercise excercise)
-        {
-            ViewParameter parameter = new ViewParameter(ViewParameter.Action.ExcerciseEdit, this, application);
-            parameter.AddParameter(excercise);
-            parameter.AddParameter(application.GetCategories());
-            NavigateTo(Views.ExcerciseSingle, parameter);
         }
     }
 }

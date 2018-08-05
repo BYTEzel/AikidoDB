@@ -2,7 +2,6 @@
 using AikidoTrainingDatabase.Infrastructure;
 using AikidoTrainingDatabase.Infrastructure.IO;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 /// <summary>
 /// Has the logic to execute all possible use-cases.
@@ -32,7 +31,14 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             databaseIO = new XmlHandler();
             database = new Database();
         }
-        
+
+
+        #region Create
+        public void AddExcerciseToTraining(ITraining training, IExcercise excercise)
+        {
+            database.AddExcercise(training, excercise);
+        }
+
         public void CreateCategory()
         {
             gui.ShowCreateCategory();
@@ -55,6 +61,19 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             ShowExcercises();
         }
 
+        public void CreateTraining()
+        {
+            gui.ShowCreateTraining();
+        }
+
+        public void CreateTrainingCallback(ITraining training)
+        {
+            database.Create(training);
+            ShowTrainings();
+        }
+        #endregion
+
+        #region Delete
         public void DeleteCategory(ICategory category)
         {
             database.Delete(category);
@@ -65,6 +84,18 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             database.Delete(excercise);
         }
 
+        public void DeleteTraining(ITraining training)
+        {
+            database.Delete(training);
+        }
+
+        public void DeleteExcerciseOfTraining(ITraining training, int excerciseIndex)
+        {
+            database.Delete(training, excerciseIndex);
+        }
+        #endregion
+
+        #region Edit
         public void EditCategory(ICategory categoryToEdit)
         {
             gui.ShowEditCategory(categoryToEdit);
@@ -76,6 +107,30 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             ShowCategories();
         }
         
+        public void EditExcercise(IExcercise excerciseToEdit)
+        {
+            gui.ShowEditExcercise(excerciseToEdit);
+        }
+
+        public void EditExcerciseCallback(IExcercise excerciseEdited)
+        {
+            database.Edit(excerciseEdited);
+            ShowExcercises();
+        }
+
+        public void EditTraining(ITraining trainingToEdit)
+        {
+            gui.ShowEditTraining(trainingToEdit);
+        }
+        
+        public void EditTrainingCallback(ITraining trainingEdited)
+        {
+            database.Edit(trainingEdited);
+            ShowTrainings();
+        }
+        #endregion
+
+        #region Show
         public void ShowCategories()
         {
             gui.ShowCategoryPage(database.CategoryList);
@@ -86,18 +141,40 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             gui.ShowExcercisePage(database.ExcerciseList);
         }
 
-        public bool VerifyCategory(ICategory category)
+        public void ShowTrainings()
         {
-            if (category.Name != string.Empty)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            gui.ShowTrainingPage(database.TrainingList);
         }
 
+        public void ShowTrainingSingle(ITraining training)
+        {
+            gui.ShowTrainingSingle(training);
+        }
+        #endregion
+
+        #region Verify
+        public bool VerifyCategory(ICategory category)
+        {
+            return VerifyName(category);
+        }
+
+        public bool VerifyExcercise(IExcercise excercise)
+        {
+            return VerifyName(excercise);
+        }
+
+        public bool VerifyTraining(ITraining training)
+        {
+            return VerifyName(training);
+        }
+
+        private bool VerifyName(ISearchable obj)
+        {
+            return (obj.Name != string.Empty) ? true : false;
+        }
+        #endregion
+
+        #region Database 
         public void CreateDatabase(string PathDb)
         {
             pathDb = PathDb;
@@ -124,22 +201,8 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         {
             return databaseIO.GetDatabasePathExtension();
         }
+        #endregion
 
-        public void EditExcercise(IExcercise excerciseToEdit)
-        {
-            gui.ShowEditExcercise(excerciseToEdit);
-        }
-
-        public void EditExcerciseCallback(IExcercise excerciseEdited)
-        {
-            database.Edit(excerciseEdited);
-            ShowExcercises();
-        }
-
-        public bool VerifyExcercise(IExcercise excercise)
-        {
-            return (excercise.Name != string.Empty) ? true : false;
-        }
 
         public ObservableCollection<Category> GetCategories()
         {
@@ -149,6 +212,11 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         public ObservableCollection<Excercise> GetExcercises()
         {
             return database.ExcerciseList;
+        }
+        
+        public ObservableCollection<Training> GetTrainings()
+        {
+            return database.TrainingList;
         }
     }
 }

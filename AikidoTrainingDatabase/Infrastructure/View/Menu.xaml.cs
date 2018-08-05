@@ -1,7 +1,6 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
 using System;
 using System.Threading.Tasks;
-using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -23,7 +22,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private void ButtonTraining_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
+            application.ShowTrainings();
         }
 
         private void ButtonExcercise_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)

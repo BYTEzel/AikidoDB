@@ -1,7 +1,5 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
 using System.IO;
-using AikidoTrainingDatabase.Infrastructure.ExtendedClasses;
-using System.Threading.Tasks;
 
 
 namespace AikidoTrainingDatabase.Infrastructure.IO
@@ -23,6 +21,7 @@ namespace AikidoTrainingDatabase.Infrastructure.IO
             System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(Database));
             var file = File.OpenRead(path);
             Database database = reader.Deserialize(file) as Database;
+
             file.Dispose();
             return database;
             //return await databaseXml.GetDatabase();
