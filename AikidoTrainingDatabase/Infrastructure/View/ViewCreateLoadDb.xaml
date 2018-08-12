@@ -16,7 +16,7 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
             <Button x:Name="ButtonMenuNew" Style="{StaticResource ButtonMenuNew}" Click="ButtonNewDatabase_Click"/>
             <Button x:Name="ButtonSearchDatabase" Style="{StaticResource ButtonIcon}" Content="&#xE094;" Click="ButtonSearchDatabase_Click"/>
-            <TextBox x:Name="TextBoxDatabasePath" Width="1000" Height="50" TextAlignment="Left" VerticalAlignment = "Center" Padding="12" IsReadOnly="True" Text="{x:Bind PathDb, Mode=OneWay}" />
+            <TextBox x:Name="TextBoxDatabasePath" Width="1000" Height="50" TextAlignment="Left" VerticalAlignment = "Center" Padding="12" IsReadOnly="True" Text="{x:Bind PathDb, Mode=OneWay}" Margin="20,0,0,0"/>
             <Button x:Name="ButtonLoadDatabase" Style="{StaticResource ButtonIcon}" Content="&#xE111;" Click="ButtonLoadDatabase_Click"/>
         </StackPanel>
     </Grid>
