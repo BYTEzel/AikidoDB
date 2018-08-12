@@ -6,21 +6,98 @@
     RequestedTheme="Light">
 
     <Application.Resources>
-        <Style TargetType="Button" x:Key="ButtonMainMenu">
+        <Color x:Key="DarkBlue">#002aa0</Color>
+        <Color x:Key="BrightBlue">#0061ff</Color>
+        <Color x:Key="LightGrayText">#efefef</Color>
+
+        <Style TargetType="Button" x:Key="ButtonColor">
+            <Setter Property="Background" Value="{StaticResource DarkBlue}"/>
+            <Setter Property="Foreground" Value="{StaticResource LightGrayText}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid" 
+                          Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                     Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource BrightBlue}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                     Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource LightGrayText}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                     Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DarkBlue}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                     Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Black" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                     Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                     Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="ContentPresenter"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Content="{TemplateBinding Content}"
+                            ContentTransitions="{TemplateBinding ContentTransitions}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Padding="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            AutomationProperties.AccessibilityView="Raw"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonMainMenu" BasedOn="{StaticResource ButtonColor}">
             <Setter Property="Margin" Value="50"/>
             <Setter Property="Width" Value="300"/>
             <Setter Property="Height" Value="300"/>
             <Setter Property="FontSize" Value="30"/>
         </Style>
 
-        <Style TargetType="Button" x:Key="ButtonMenu">
+        <Style TargetType="Button" x:Key="ButtonMenu" BasedOn="{StaticResource ButtonColor}">
             <Setter Property="Margin" Value="20"/>
             <Setter Property="Height" Value="50"/>
         </Style>
 
         <Style TargetType="Button" x:Key="ButtonIcon" BasedOn="{StaticResource ButtonMenu}">
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
-            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="25"/>
         </Style>
 
         <Style TargetType="Button" x:Key="ButtonMenuBack" BasedOn="{StaticResource ButtonIcon}">
@@ -58,8 +135,8 @@
 
         <Style TargetType="TextBlock" x:Key="TitleBox">
             <Setter Property="FontSize" Value="60"/>
-            <Setter Property="Foreground" Value="CornflowerBlue"/>
-            <Setter Property="Margin" Value="5,10,0,10"/>
+            <Setter Property="Foreground" Value="{StaticResource InkToolbarAccentColorThemeBrush}"/>
+            <!--<Setter Property="Margin" Value="5,10,0,10"/>-->
         </Style>        
     </Application.Resources>
 </Application>
