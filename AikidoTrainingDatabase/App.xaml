@@ -10,6 +10,17 @@
         <Color x:Key="DarkBlue">#002aa0</Color>
         <Color x:Key="BrightBlue">#0061ff</Color>
         <Color x:Key="LightGrayText">#efefef</Color>
+        <Color x:Key="ApplicationBackground">#4f7bc1</Color>
+        <SolidColorBrush x:Key="ApplicationBackgroundBrush" Color="#4f7bc1"/>
+
+        <LinearGradientBrush x:Key="BrushShadow" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="LightGray" Offset="0.0" />
+            <GradientStop Color="Gray" Offset="1.0" />
+        </LinearGradientBrush>
+
+        <Thickness x:Key="ThicknessShadow">0,0,6,6</Thickness>
+        <Thickness x:Key="MarginListView">10</Thickness>
+        <Thickness x:Key="MarginElements">0,0,0,20</Thickness>
 
         <Style TargetType="Button" x:Key="ButtonColor">
             <Setter Property="Background" Value="{StaticResource DarkBlue}"/>
@@ -17,7 +28,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <controls:DropShadowPanel BlurRadius="4.0" ShadowOpacity="0.70" OffsetX="5.0" OffsetY="5.0" Color="Gray">
+                        <controls:DropShadowPanel BlurRadius="8.0" ShadowOpacity="0.50" OffsetX="5.0" OffsetY="5.0" Color="Gray">
                             <Grid x:Name="RootGrid" 
                               Background="{TemplateBinding Background}">
                                 <VisualStateManager.VisualStateGroups>
@@ -85,7 +96,7 @@
             </Setter>
         </Style>
 
-        <Style TargetType="Button" x:Key="ButtonMainMenu" BasedOn="{StaticResource ButtonColor}">
+        <Style TargetType="Button" x:Key="ButtonMainMenu">
             <Setter Property="Margin" Value="50"/>
             <Setter Property="Width" Value="300"/>
             <Setter Property="Height" Value="300"/>
@@ -93,7 +104,7 @@
         </Style>
 
         <Style TargetType="Button" x:Key="ButtonMenu" BasedOn="{StaticResource ButtonColor}">
-            <Setter Property="Margin" Value="20,20,0,20"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
             <Setter Property="Height" Value="50"/>
         </Style>
 
@@ -139,9 +150,21 @@
         <Style TargetType="TextBlock" x:Key="TitleBox">
             <Setter Property="FontSize" Value="60"/>
             <Setter Property="Foreground" Value="{StaticResource InkToolbarAccentColorThemeBrush}"/>
-            <!--<Setter Property="Margin" Value="5,10,0,10"/>-->
-        </Style>        
+        </Style>
+
         
+
+        <Grid x:Key="GridApplication" Background="CornflowerBlue">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+        </Grid>
         
+
+
     </Application.Resources>
 </Application>

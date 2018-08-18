@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -20,19 +21,30 @@
                 <TextBlock Text="{Binding Description}" VerticalAlignment="Center" Width="500" Height="45" Margin="0,17,0,0"/>
             </StackPanel>
         </DataTemplate>
+
+        
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Orientation="Vertical">
+    <Grid Background="{StaticResource ApplicationBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="White" BorderThickness="{StaticResource ThicknessShadow}" BorderBrush="{StaticResource BrushShadow}" Margin="{StaticResource MarginElements}">
             <TextBlock Text="Training" Style="{StaticResource TitleBox}"/>
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="ButtonBack" Style="{StaticResource ButtonMenuBack}" Click="ButtonBack_Click"/>
-                <Button x:Name="ButtonNew" Style="{StaticResource ButtonMenuNew}" Click="ButtonNew_Click"/>
-            </StackPanel>
-            <!-- The SelectionChanged evaluates the data if it is clicked and update the used template. Details
-             are described in 
-            https://stackoverflow.com/questions/40026593/uwp-listview-how-to-expand-an-item-when-select-it
-            -->
-            <ListView x:Name="ListViewTraining" ItemsSource="{x:Bind trainingCollection}" ItemTemplate="{StaticResource Normal}" SelectionChanged="ListViewTraining_SelectionChanged"/>
+        </Grid>        
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="White" BorderThickness="{StaticResource ThicknessShadow}" BorderBrush="{StaticResource BrushShadow}" Margin="{StaticResource MarginElements}">
+            <Button x:Name="ButtonBack" Style="{StaticResource ButtonMenuBack}" Click="ButtonBack_Click"/>
+            <Button x:Name="ButtonNew" Style="{StaticResource ButtonMenuNew}" Click="ButtonNew_Click"/>
         </StackPanel>
+        <!-- The SelectionChanged evaluates the data if it is clicked and update the used template. Details
+            are described in 
+        https://stackoverflow.com/questions/40026593/uwp-listview-how-to-expand-an-item-when-select-it
+        -->
+        <ListView Grid.Row="2" Margin="{StaticResource MarginListView}" Background="White" x:Name="ListViewTraining" ItemsSource="{x:Bind trainingCollection}" 
+                  ItemTemplate="{StaticResource Normal}" SelectionChanged="ListViewTraining_SelectionChanged" 
+                  BorderThickness="{StaticResource ThicknessShadow}" BorderBrush="{StaticResource BrushShadow}"/>
     </Grid>
 </Page>
