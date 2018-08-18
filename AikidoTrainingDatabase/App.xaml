@@ -21,6 +21,8 @@
         <Thickness x:Key="ThicknessShadow">0,0,6,6</Thickness>
         <Thickness x:Key="MarginListView">10</Thickness>
         <Thickness x:Key="MarginElements">0,0,0,20</Thickness>
+        <GridLength x:Key="HeightMenuButtons">120</GridLength>
+        <GridLength x:Key="HeightTitle">120</GridLength>
 
         <Style TargetType="Button" x:Key="ButtonColor">
             <Setter Property="Background" Value="{StaticResource DarkBlue}"/>

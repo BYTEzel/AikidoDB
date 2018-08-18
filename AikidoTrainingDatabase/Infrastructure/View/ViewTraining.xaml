@@ -26,8 +26,8 @@
     </Page.Resources>
     <Grid Background="{StaticResource ApplicationBackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="{StaticResource HeightTitle}"/>
+            <RowDefinition Height="{StaticResource HeightMenuButtons}"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
