@@ -26,6 +26,7 @@ namespace AikidoTrainingDatabase.Infrastructure
         /// <summary>
         /// Get a single category.
         /// </summary>
+        void ShowCategorySingle(ICategory category);
         void ShowCreateCategory();
         /// <summary>
         /// Open a mask that allows to edit a certain category.

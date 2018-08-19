@@ -6,18 +6,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource ApplicationBackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource HeightTitle}"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Load or create a new database" Style="{StaticResource TitleBox}" Grid.Row="0"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+        <Grid Grid.Row="0" Background="White" Margin="{StaticResource MarginElements}" BorderBrush="{StaticResource BrushShadow}" BorderThickness="{StaticResource ThicknessShadow}">
+            <TextBlock Text="Load or create a new database" Style="{StaticResource TitleBox}" VerticalAlignment="Center"/>
+        </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Background="White" BorderBrush="{StaticResource BrushShadow}" BorderThickness="{StaticResource ThicknessShadow}">
             <Button x:Name="ButtonMenuNew" Style="{StaticResource ButtonMenuNew}" Click="ButtonNewDatabase_Click"/>
             <Button x:Name="ButtonSearchDatabase" Style="{StaticResource ButtonIcon}" Content="&#xE094;" Click="ButtonSearchDatabase_Click"/>
-            <TextBox x:Name="TextBoxDatabasePath" Width="1000" Height="50" TextAlignment="Left" VerticalAlignment = "Center" Padding="12" IsReadOnly="True" Text="{x:Bind PathDb, Mode=OneWay}" Margin="20,0,0,0"/>
-            <Button x:Name="ButtonLoadDatabase" Style="{StaticResource ButtonIcon}" Content="&#xE111;" Click="ButtonLoadDatabase_Click"/>
+            <TextBox x:Name="TextBoxDatabasePath" Width="1000" Height="50" TextAlignment="Left" VerticalAlignment = "Center" Padding="12" IsReadOnly="True" Text="{x:Bind PathDb, Mode=OneWay}" Margin="20,50,0,50"/>
+            <Button x:Name="ButtonLoadDatabase" Style="{StaticResource ButtonIcon}" Content="&#xE111;" Click="ButtonLoadDatabase_Click" Margin="20,10,20,10"/>
         </StackPanel>
     </Grid>
 </Page>

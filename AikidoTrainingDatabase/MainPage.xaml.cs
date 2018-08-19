@@ -38,6 +38,13 @@ namespace AikidoTrainingDatabase
             NavigateTo(Views.CreateLoadDatabase, par);
         }
 
+        public void ShowCategorySingle(ICategory category)
+        {
+            ViewParameter par = new ViewParameter(ViewParameter.Action.CategoryShow, this, application);
+            par.AddParameter(category);
+            NavigateTo(Views.CategorySingle, par);
+        }
+
         public void ShowCategoryPage(ICollection categoryCollection)
         {
             ViewParameter par = new ViewParameter(ViewParameter.Action.CategoryShow, this, application);

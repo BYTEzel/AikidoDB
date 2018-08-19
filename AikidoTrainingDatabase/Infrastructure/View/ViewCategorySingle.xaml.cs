@@ -73,6 +73,9 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 param = parameter.GetParameter();
                 switch (parameter.GetAction())
                 {
+                    case ViewParameter.Action.CategoryShow:
+                        category = param[0] as ICategory;
+                        break;
                     case ViewParameter.Action.CategoryCreate:
                         break;
                     case ViewParameter.Action.CategoryEdit:

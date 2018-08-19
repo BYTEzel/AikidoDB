@@ -31,18 +31,28 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Orientation="Vertical">
+    <Grid Background="{StaticResource ApplicationBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource HeightTitle}"/>
+            <RowDefinition Height="{StaticResource HeightMenuButtons}"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="White" BorderThickness="{StaticResource ThicknessShadow}" BorderBrush="{StaticResource BrushShadow}" Margin="{StaticResource MarginElements}">
             <TextBlock Text="Category" Style="{StaticResource TitleBox}"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="White" BorderThickness="{StaticResource ThicknessShadow}" BorderBrush="{StaticResource BrushShadow}" Margin="{StaticResource MarginElements}">
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="ButtonBack" Style="{StaticResource ButtonMenuBack}" Click="ButtonBack_Click"/>
                 <Button x:Name="ButtonNew" Style="{StaticResource ButtonMenuNew}" Click="ButtonNew_Click" FontFamily="Segoe MDL2 Assets"/>
             </StackPanel>
-            <!-- The SelectionChanged evaluates the data if it is clicked and update the used template. Details
-             are described in 
-            https://stackoverflow.com/questions/40026593/uwp-listview-how-to-expand-an-item-when-select-it
-            -->
-            <ListView x:Name="ListViewCategory" ItemsSource="{x:Bind categoryCollection}" ItemTemplate="{StaticResource Normal}" SelectionChanged="ListView_SelectionChanged"/>
-        </StackPanel>
+        </Grid>
+        
+        <!-- The SelectionChanged evaluates the data if it is clicked and update the used template. Details
+            are described in 
+        https://stackoverflow.com/questions/40026593/uwp-listview-how-to-expand-an-item-when-select-it
+        -->
+        <ListView x:Name="ListViewCategory" Grid.Row="2" ItemsSource="{x:Bind categoryCollection}" ItemTemplate="{StaticResource Normal}" SelectionChanged="ListView_SelectionChanged" BorderThickness="{StaticResource ThicknessShadow}" BorderBrush="{StaticResource BrushShadow}" Margin="{StaticResource MarginListView}" Background="White"/>
     </Grid>
 </Page>

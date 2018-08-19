@@ -150,6 +150,11 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         {
             gui.ShowTrainingSingle(training);
         }
+
+        public void ShowCategorySingle(ICategory category)
+        {
+            gui.ShowCategorySingle(category);
+        }
         #endregion
 
         #region Verify

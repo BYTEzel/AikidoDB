@@ -14,6 +14,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         void CreateExcerciseCallback(IExcercise excercise);
         void CreateTrainingCallback(ITraining training);
         void ShowCategories();
+        void ShowCategorySingle(ICategory category);
         void ShowExcercises();
         void ShowTrainings();
         void ShowTrainingSingle(ITraining training);
