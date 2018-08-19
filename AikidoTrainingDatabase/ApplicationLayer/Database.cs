@@ -177,7 +177,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             // Look for all places where the the excercise may be used.
             for (int t = 0; t < trainingList.Count; t++)
             {
-                for (int e = 0; e < excerciseList[t].Categories.Count; t++)
+                for (int e = 0; e < trainingList[t].Excercises.Count; e++)
                 {
                     if (trainingList[t].Excercises[e].ID == excercise.ID)
                     {

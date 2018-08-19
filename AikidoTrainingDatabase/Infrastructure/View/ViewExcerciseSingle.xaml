@@ -26,8 +26,9 @@
 
         <Grid Grid.Row="1" Background="White" BorderThickness="{StaticResource ThicknessShadow}" BorderBrush="{StaticResource BrushShadow}" Margin="{StaticResource MarginElements}">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="ButtonOk" Style="{StaticResource ButtonMenuOk}" Click="ButtonOk_Click"/>
-                <Button x:Name="ButtonCancel" Style="{StaticResource ButtonMenuCancel}" Click="ButtonCancel_Click"/>
+                <Button x:Name="ButtonBack" Style="{StaticResource ButtonMenuBack}" Click="ButtonBack_Click"/>
+                <ToggleSwitch x:Name="SwitchEdit" Style="{StaticResource SwitchEdit}" IsOn="{x:Bind Editable, Mode=TwoWay}" Toggled="SwitchEdit_Toggled"/>
+                <Button x:Name="ButtonDelete" Style="{StaticResource ButtonMenuDelete}" Click="ButtonDelete_Click" HorizontalAlignment="Right"/>
             </StackPanel>
         </Grid>
 
@@ -51,10 +52,10 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" Margin="10,10,0,10"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Text="{x:Bind excercise.Name, Mode=TwoWay}" Margin="0,10,0,10"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Text="{x:Bind excercise.Name, Mode=TwoWay}" Margin="0,10,0,10" IsEnabled="{x:Bind SwitchEdit.IsOn, Mode=OneWay}"/>
                         <TextBlock Text="Description" Grid.Row="1" Grid.Column="0" Margin="10,0,0,10"/>
                         <TextBox Grid.Row="1" Grid.Column="1" Text="{x:Bind excercise.Description, Mode=TwoWay}" Margin="0,0,0,10"
-                                        AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="390"/>
+                                        AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="390" IsEnabled="{x:Bind SwitchEdit.IsOn, Mode=OneWay}"/>
                     </Grid>
                 </StackPanel>
 
@@ -66,13 +67,14 @@
                         </Grid.ColumnDefinitions>
                 
                         <TextBlock Text="Categories" Grid.Column="0" Margin="10,13,0,0"/>
-                        <ListView x:Name="ListViewCategories" Grid.Column="1" Height="200" Margin="0,10,0,10"
-                                            ItemsSource="{x:Bind excercise.Categories, Mode=OneWay}"       
-                                            SelectedItem="{x:Bind excercise.Categories, Mode=OneWay}"
-                                            BorderBrush="Gray" BorderThickness="2"
-                                            VerticalAlignment="Top" ItemTemplate="{Binding Name}"
-                                            FlyoutBase.AttachedFlyout="{StaticResource FlyoutCategorySelection}"
-                                            Tapped="ListViewCategories_Tapped"/>
+                        <ListView x:Name="ListViewCategories" Grid.Column="1" Height="200" Margin="0,10,0,10"                                  
+                                    ItemsSource="{x:Bind excercise.Categories, Mode=OneWay}"       
+                                    SelectedItem="{x:Bind excercise.Categories, Mode=OneWay}"
+                                    BorderBrush="Gray" BorderThickness="2"
+                                    VerticalAlignment="Top" ItemTemplate="{Binding Name}"
+                                    FlyoutBase.AttachedFlyout="{StaticResource FlyoutCategorySelection}"
+                                    Tapped="ListViewCategories_Tapped"
+                                    IsEnabled="{x:Bind SwitchEdit.IsOn, Mode=OneWay}"/>
                     </Grid>
                 </StackPanel>
             </Grid>

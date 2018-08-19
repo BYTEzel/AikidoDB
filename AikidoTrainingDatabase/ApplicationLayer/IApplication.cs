@@ -16,6 +16,7 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         void ShowCategories();
         void ShowCategorySingle(ICategory category);
         void ShowExcercises();
+        void ShowExcerciseSingle(IExcercise excercise);
         void ShowTrainings();
         void ShowTrainingSingle(ITraining training);
         bool VerifyCategory(ICategory category);

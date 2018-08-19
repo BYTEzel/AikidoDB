@@ -72,17 +72,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private void ListViewExcercise_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (var item in e.AddedItems)
-            {
-                ListViewItem lvi = (sender as ListView).ContainerFromItem(item) as ListViewItem;
-                lvi.ContentTemplate = (DataTemplate)this.Resources["Detail"];
-            }
-            //Remove DataTemplate for unselected items
-            foreach (var item in e.RemovedItems)
-            {
-                ListViewItem lvi = (sender as ListView).ContainerFromItem(item) as ListViewItem;
-                lvi.ContentTemplate = (DataTemplate)this.Resources["Normal"];
-            }
+            application.ShowExcerciseSingle((ListViewExcercise.SelectedItem as ExcerciseDisplay).GetExcercise());
         }
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)

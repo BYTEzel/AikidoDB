@@ -1,5 +1,6 @@
 ﻿using AikidoTrainingDatabase.ApplicationLayer;
 using AikidoTrainingDatabase.Domain;
+using AikidoTrainingDatabase.Infrastructure.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
@@ -17,6 +18,8 @@ namespace AikidoTrainingDatabase.Infrastructure.View
     /// </summary>
     public sealed partial class ViewExcerciseSingle : Page
     {
+        public bool Editable;
+        
         public IExcercise excercise;
         public ObservableCollection<Category> categoriesList;
         IExcercise excerciseTmp;   // as internal storage for the editing
@@ -31,40 +34,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             excerciseTmp = new Excercise();
             categoriesList = new ObservableCollection<Category>();
         }
-
-        private async void ButtonOk_Click(object sender, RoutedEventArgs e)
-        {
-            if (application.VerifyExcercise(excercise))
-            {
-                if (parameter.GetAction() == ViewParameter.Action.ExcerciseCreate)
-                {
-                    application.CreateExcerciseCallback(excercise);
-                }
-                else if (parameter.GetAction() == ViewParameter.Action.ExcerciseEdit)
-                {
-                    application.EditExcerciseCallback(excercise);
-                }
-            }
-            else
-            {
-                // Show an error message
-                var dialog = new ContentDialog();
-                dialog.Content = "Excercise cannot be created, the data is incomplete :(";
-                dialog.CloseButtonText = "Ok";
-                var result = await dialog.ShowAsync();
-            }
-        }
-
-        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
-        {
-            if (parameter.GetAction() == ViewParameter.Action.ExcerciseEdit)
-            {
-                // Reset the Excercise
-                application.EditExcercise(excerciseTmp);
-            }
-            application.ShowExcercises();
-        }
-
+        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Object[] param = e.Parameter as Object[];
@@ -78,6 +48,10 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 param = parameter.GetParameter();
                 switch (parameter.GetAction())
                 {
+                    case ViewParameter.Action.ExcerciseShow:
+                        excercise = param[0] as IExcercise;
+                        categoriesList = param[1] as ObservableCollection<Category>;
+                        break;
                     case ViewParameter.Action.ExcerciseCreate:
                         categoriesList = param[0] as ObservableCollection<Category>;
                         break;
@@ -104,6 +78,45 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             foreach (Category cat in ListViewCategoriesAll.SelectedItems)
             {
                 excercise.Categories.Add(cat);
+            }
+        }
+
+        private async void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (application.VerifyExcercise(excercise))
+            {
+                if (parameter.GetAction() == ViewParameter.Action.ExcerciseCreate)
+                {
+                    application.CreateExcerciseCallback(excercise);
+                }
+                else if ((parameter.GetAction() == ViewParameter.Action.ExcerciseEdit) || (parameter.GetAction() == ViewParameter.Action.ExcerciseShow))
+                {
+                    application.EditExcerciseCallback(excercise);
+                }
+            }
+            else
+            {
+                // Show an error message
+                var dialog = new ContentDialog();
+                dialog.Content = "Excercise cannot be created, the data is incomplete :(";
+                dialog.CloseButtonText = "Ok";
+                var result = await dialog.ShowAsync();
+            }
+        }
+
+        private void SwitchEdit_Toggled(object sender, RoutedEventArgs e)
+        {
+            // Nothing to do here
+        }
+
+        private async void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var result = await(new DeleteDialog().GetDialog().ShowAsync());
+
+            if (result == ContentDialogResult.Primary)
+            {
+                application.DeleteExcercise(excercise);
+                application.ShowExcercises();
             }
         }
     }

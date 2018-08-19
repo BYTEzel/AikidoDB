@@ -30,30 +30,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             categoryTmp = new Category(string.Empty, string.Empty);
             Editable = false;
         }
-
-        private async void ButtonOk_Click(object sender, RoutedEventArgs e)
-        {
-            if(application.VerifyCategory(category))
-            {
-                if (parameter.GetAction() == ViewParameter.Action.CategoryCreate)
-                {
-                    application.CreateCategoryCallback(category);
-                }
-                else if (parameter.GetAction() == ViewParameter.Action.CategoryEdit)
-                {
-                    application.EditCategoryCallback(category);
-                }
-            }
-            else
-            {
-                // Show an error message
-                var dialog = new ContentDialog();
-                dialog.Content = "Category cannot be created, the data is incomplete :(";
-                dialog.CloseButtonText = "OK";
-                var result = await dialog.ShowAsync();
-            }
-        }
-        
+                        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Object[] param = e.Parameter as Object[];

@@ -136,9 +136,19 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             gui.ShowCategoryPage(database.CategoryList);
         }
 
+        public void ShowCategorySingle(ICategory category)
+        {
+            gui.ShowCategorySingle(category);
+        }
+
         public void ShowExcercises()
         {
             gui.ShowExcercisePage(database.ExcerciseList);
+        }
+
+        public void ShowExcerciseSingle(IExcercise excercise)
+        {
+            gui.ShowExcerciseSingle(excercise);
         }
 
         public void ShowTrainings()
@@ -151,10 +161,6 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             gui.ShowTrainingSingle(training);
         }
 
-        public void ShowCategorySingle(ICategory category)
-        {
-            gui.ShowCategorySingle(category);
-        }
         #endregion
 
         #region Verify

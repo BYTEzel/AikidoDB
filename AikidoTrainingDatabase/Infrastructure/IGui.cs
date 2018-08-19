@@ -40,6 +40,7 @@ namespace AikidoTrainingDatabase.Infrastructure
         void ShowExcercisePage(ICollection exerciseCollection);
         void ShowCreateExcercise();
         void ShowEditExcercise(IExcercise excercise);
+        void ShowExcerciseSingle(IExcercise excercise);
         /// <summary>
         /// Shows an overview of all the trainings currently present.
         /// </summary>
