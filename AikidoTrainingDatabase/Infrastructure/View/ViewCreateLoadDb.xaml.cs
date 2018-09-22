@@ -20,6 +20,8 @@ namespace AikidoTrainingDatabase.Infrastructure.View
         private IApplication application;
         private IGui gui;
 
+        private string pathDbDefault;
+
         private string fileDb;
         private string pathDb;
         
@@ -38,7 +40,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         public ViewCreateLoadDb()
         {
-            InitializeComponent();
+            InitializeComponent();            
             DataContextChanged += (s, e) => Bindings.Update();
             ButtonsUi = new Button[] { ButtonMenuNew, ButtonSearchDatabase, ButtonLoadDatabase };            
         }
@@ -59,9 +61,20 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 {
                     // Application now has read/write access to all contents in the picked folder
                     // (including other sub-folder contents)
-                    Windows.Storage.AccessCache.StorageApplicationPermissions.
-                        FutureAccessList.AddOrReplace("PickedFolderToken", folder);
-                    PathDb = folder.Path;
+                    Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", folder);
+                    // Check, if a database is already present
+                    if (await folder.TryGetItemAsync(fileDb) != null)
+                    {
+                        ContentDialog dialogOverwrite = new ContentDialog();
+                        dialogOverwrite.Title = "Unable to create a database here";
+                        dialogOverwrite.Content = "A database is already present here. Would you like to overwrite it?";
+                        dialogOverwrite.CloseButtonText = "Yes";
+                        dialogOverwrite.PrimaryButtonText = "No";
+
+                        ContentDialogResult result = await dialogOverwrite.ShowAsync();
+                        // Only assign the result if the user decides this way, otherwise reset the default.
+                        PathDb = (result == ContentDialogResult.Primary) ? "" : folder.Path;
+                    }
                 }
             }
             finally
@@ -101,7 +114,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private async void ButtonLoadDatabase_Click(object sender, RoutedEventArgs e)
         {
-            string path = TextBoxDatabasePath.Text;
+            string path = PathDb; // TextBoxDatabasePath.Text;
 
             var errorDialog = new ContentDialog();
             errorDialog.CloseButtonText = "OK";
@@ -147,8 +160,9 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             }
             else
             {
+                errorDialog.Title = "Invalid path";
                 // In case the path is incorrect, give a message to the user
-                errorDialog.Content = "Invalid path";
+                errorDialog.Content = "Unable to create a database here :(\n\nPlease create a new database in an empty location or select an existing one.";
                 // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
                 // Show the message dialog
                 await errorDialog.ShowAsync();
@@ -158,7 +172,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private bool CheckPath(string path)
         {
-            return ((path.IndexOfAny(Path.GetInvalidPathChars()) <= 0) && (path != null) && (path != string.Empty));
+            return ((PathDb != pathDbDefault)&&(path.IndexOfAny(Path.GetInvalidPathChars()) <= 0) && (path != null) && (path != string.Empty));
         }
 
         private Task<bool> CheckPathExist(string path)
@@ -194,6 +208,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 gui = parameter.GetGui();
 
                 fileDb = application.GetDatabasePathExtension();
+                pathDbDefault = PathDb;   // Store the default path for later checking - if the user interrupts certain operations, the (invalid) default path will be reset. We use this string to check it.
             }
             base.OnNavigatedTo(e);
         }
