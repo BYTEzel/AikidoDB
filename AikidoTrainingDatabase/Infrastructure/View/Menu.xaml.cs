@@ -67,5 +67,10 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             }
             base.OnNavigatedTo(e);
         }
+
+        private void ButtonBack_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            application.ShowCreateLoadDatabase();            
+        }
     }
 }

@@ -54,6 +54,7 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                         break;
                     case ViewParameter.Action.ExcerciseCreate:
                         categoriesList = param[0] as ObservableCollection<Category>;
+                        Editable = true;
                         break;
                     case ViewParameter.Action.ExcerciseEdit:
                         excercise = param[0] as IExcercise;

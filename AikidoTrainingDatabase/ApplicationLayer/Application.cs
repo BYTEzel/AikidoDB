@@ -165,6 +165,10 @@ namespace AikidoTrainingDatabase.ApplicationLayer
             gui.ShowTrainingSingle(training);
         }
 
+        public void ShowCreateLoadDatabase()
+        {
+            gui.ShowCreateLoadDatabase();
+        }
         #endregion
 
         #region Verify

@@ -17,7 +17,6 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="{StaticResource HeightTitle}"/>
-                <RowDefinition Height="450"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -27,6 +26,12 @@
 
             <Grid Grid.Row="1" Background="White" Margin="{StaticResource MarginElements}" BorderBrush="{StaticResource BrushShadow}" BorderThickness="{StaticResource ThicknessShadow}">
                 <VariableSizedWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal">
+                    <Button x:Name="ButtonBack" Style="{StaticResource ButtonMainMenu}" Click="ButtonBack_Click">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE0C4;" FontSize="{StaticResource ButtonIconSize}"/>
+                            <TextBlock Text="Back" FontSize="{StaticResource ButtonFontSize}" HorizontalAlignment="Center" Margin="{StaticResource ButtonMargin}"/>
+                        </StackPanel>
+                    </Button>
                     <Button x:Name="ButtonTraining" Style="{StaticResource ButtonMainMenu}" Click="ButtonTraining_Click">
                         <StackPanel Orientation="Vertical">
                             <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xECA7;" FontSize="{StaticResource ButtonIconSize}"/>
