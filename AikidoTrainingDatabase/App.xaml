@@ -120,6 +120,10 @@
             <Setter Property="Content" Value="&#xE0C4;" />            
         </Style>
 
+        <Style TargetType="Button" x:Key="ButtonMenuExport" BasedOn="{StaticResource ButtonIcon}">
+            <Setter Property="Content" Value="&#xE118;" />
+        </Style>
+
         <Style TargetType="Button" x:Key="ButtonMenuNew" BasedOn="{StaticResource ButtonIcon}">
             <Setter Property="Content" Value="&#xE109;"/>
         </Style>

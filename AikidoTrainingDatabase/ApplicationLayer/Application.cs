@@ -1,7 +1,11 @@
 ﻿using AikidoTrainingDatabase.Domain;
 using AikidoTrainingDatabase.Infrastructure;
 using AikidoTrainingDatabase.Infrastructure.IO;
+using AikidoTrainingDatabaseSql.HtmlExport;
 using System.Collections.ObjectModel;
+using System;
+using System.Threading.Tasks;
+using Windows.Storage;
 
 /// <summary>
 /// Has the logic to execute all possible use-cases.
@@ -214,7 +218,19 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         }
         #endregion
 
+        #region Export
+        public async Task ExportTrainingAsync(ITraining training, string filename, StorageFolder storageFolder)
+        {
+            HtmlBuilderTraining htmlBuilder = new HtmlBuilderTraining(training);
+            // Create sample file; replace if exists.
+            StorageFile exportFile = await storageFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
 
+            await FileIO.WriteTextAsync(exportFile, htmlBuilder.GetDocument());
+        }
+        #endregion
+
+
+        #region Getter
         public ObservableCollection<Category> GetCategories()
         {
             return database.CategoryList;
@@ -229,5 +245,6 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         {
             return database.TrainingList;
         }
+        #endregion
     }
 }

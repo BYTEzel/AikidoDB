@@ -1,5 +1,7 @@
 ﻿using AikidoTrainingDatabase.Domain;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace AikidoTrainingDatabase.ApplicationLayer
 {
@@ -39,5 +41,6 @@ namespace AikidoTrainingDatabase.ApplicationLayer
         void WriteDatabase();
         void WriteDatabase(string PathDb);
         void ReadDatabase(string PathDb);
+        Task ExportTrainingAsync(ITraining training, string filename, StorageFolder storageFolder);
     }
 }

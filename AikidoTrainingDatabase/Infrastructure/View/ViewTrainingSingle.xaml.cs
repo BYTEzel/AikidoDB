@@ -2,6 +2,7 @@
 using AikidoTrainingDatabase.Domain;
 using AikidoTrainingDatabase.Infrastructure.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -24,11 +25,20 @@ namespace AikidoTrainingDatabase.Infrastructure.View
         private IApplication application;
         public ObservableCollection<Excercise> excercisesAll;
 
+        private List<Button> listButton;
+
 
         public ViewTrainingSingle()
         {
             this.InitializeComponent();
             Editable = false;
+            // Add all interactive elements to a list for easier en-/disabling
+            listButton = new List<Button>();
+            listButton.Add(ButtonBack);
+            listButton.Add(ButtonDelete);
+            listButton.Add(ButtonExcerciseAdd);
+            listButton.Add(ButtonExcerciseDelete);
+            listButton.Add(ButtonExport);
         }
 
         private async void ButtonBack_Click(object sender, RoutedEventArgs e)
@@ -121,6 +131,48 @@ namespace AikidoTrainingDatabase.Infrastructure.View
         private void ListViewFlyoutExcercisesAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             application.AddExcerciseToTraining(training, ListViewFlyoutExcercisesAll.SelectedItem as Excercise);
+        }
+
+        private async void ButtonExport_Click(object sender, RoutedEventArgs e)
+        {
+            DisableUi();
+
+            try
+            {
+                var picker = new Windows.Storage.Pickers.FolderPicker();
+                picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.List;
+                picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+                picker.FileTypeFilter.Add(".html");
+
+                Windows.Storage.StorageFolder folder = await picker.PickSingleFolderAsync();
+                if (folder != null)
+                {
+                    // Application now has read/write access to all contents in the picked folder
+                    // (including other sub-folder contents)
+                    Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", folder);
+                    await application.ExportTrainingAsync(training, training.ID + "_" + training.Name + ".html", folder);
+                }
+            }
+            finally
+            {
+                EnableUi();
+            }
+        }
+
+        private void EnableUi()
+        {
+            foreach(Button b in listButton)
+            {
+                b.IsEnabled = true;
+            }
+        }
+
+        private void DisableUi()
+        {
+            foreach (Button b in listButton)
+            {
+                b.IsEnabled = false;
+            }
         }
     }
 }

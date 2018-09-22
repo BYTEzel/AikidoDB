@@ -38,6 +38,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="ButtonBack" Style="{StaticResource ButtonMenuBack}" Click="ButtonBack_Click"/>
                 <ToggleSwitch x:Name="SwitchEdit" Style="{StaticResource SwitchEdit}" IsOn="{x:Bind Editable, Mode=TwoWay}" Toggled="SwitchEdit_Toggled"/>
+                <Button x:Name="ButtonExport" Style="{StaticResource ButtonMenuExport}" Click="ButtonExport_Click"/>
                 <Button x:Name="ButtonDelete" Style="{StaticResource ButtonMenuDelete}" Click="ButtonDelete_Click" HorizontalAlignment="Right"/>
             </StackPanel>
         </Grid>
