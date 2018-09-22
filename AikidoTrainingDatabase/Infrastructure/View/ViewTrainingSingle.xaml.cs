@@ -4,6 +4,7 @@ using AikidoTrainingDatabase.Infrastructure.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -48,10 +49,12 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 if (parameter.GetAction() == ViewParameter.Action.TrainingCreate)
                 {
                     application.CreateTrainingCallback(training);
+                    await Task.Run(() => application.WriteDatabase());
                 }
                 else if ((parameter.GetAction() == ViewParameter.Action.TrainingEdit) || (parameter.GetAction() == ViewParameter.Action.TrainingShow))
                 {
                     application.EditTrainingCallback(training);
+                    await Task.Run(() => application.WriteDatabase());
                 }
             }
             else

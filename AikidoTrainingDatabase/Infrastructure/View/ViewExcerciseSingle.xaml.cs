@@ -3,6 +3,7 @@ using AikidoTrainingDatabase.Domain;
 using AikidoTrainingDatabase.Infrastructure.Dialogs;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -89,10 +90,12 @@ namespace AikidoTrainingDatabase.Infrastructure.View
                 if (parameter.GetAction() == ViewParameter.Action.ExcerciseCreate)
                 {
                     application.CreateExcerciseCallback(excercise);
+                    await Task.Run(() => application.WriteDatabase());
                 }
                 else if ((parameter.GetAction() == ViewParameter.Action.ExcerciseEdit) || (parameter.GetAction() == ViewParameter.Action.ExcerciseShow))
                 {
                     application.EditExcerciseCallback(excercise);
+                    await Task.Run(() => application.WriteDatabase());
                 }
             }
             else

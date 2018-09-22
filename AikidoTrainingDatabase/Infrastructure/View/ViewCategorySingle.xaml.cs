@@ -2,6 +2,7 @@
 using AikidoTrainingDatabase.Domain;
 using AikidoTrainingDatabase.Infrastructure.Dialogs;
 using System;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -65,15 +66,18 @@ namespace AikidoTrainingDatabase.Infrastructure.View
 
         private async void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
+
             if (application.VerifyCategory(category))
             {
                 if (parameter.GetAction() == ViewParameter.Action.CategoryCreate)
                 {
                     application.CreateCategoryCallback(category);
+                    await Task.Run(() => application.WriteDatabase());
                 }
                 else if ((parameter.GetAction() == ViewParameter.Action.CategoryEdit) || (parameter.GetAction() == ViewParameter.Action.CategoryShow))
                 {
                     application.EditCategoryCallback(category);
+                    await Task.Run(() => application.WriteDatabase());
                 }
             }
             else

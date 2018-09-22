@@ -50,12 +50,12 @@
                             <TextBlock Text="Category" FontSize="{StaticResource ButtonFontSize}" HorizontalAlignment="Center" Margin="{StaticResource ButtonMargin}"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="ButtonSave" Style="{StaticResource ButtonMainMenu}" Click="ButtonSave_Click">
+                    <!--<Button x:Name="ButtonSave" Style="{StaticResource ButtonMainMenu}" Click="ButtonSave_Click">
                         <StackPanel Orientation="Vertical">
                             <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE105;" FontSize="{StaticResource ButtonIconSize}"/>
                             <TextBlock Text="Save" FontSize="{StaticResource ButtonFontSize}" HorizontalAlignment="Center" Margin="{StaticResource ButtonMargin}"/>
                         </StackPanel>
-                    </Button>
+                    </Button>-->
                 </VariableSizedWrapGrid>
             </Grid>
         </Grid>

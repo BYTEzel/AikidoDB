@@ -24,11 +24,11 @@ namespace AikidoTrainingDatabase
             InitializeComponent();
 
             // Set the global window sizes
-            ApplicationView.PreferredLaunchViewSize = new Size(1400, 600);
+            ApplicationView.PreferredLaunchViewSize = new Size(1400, 1200);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             // if you want not to have any window smaller than this size...
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(1400, 600));
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(1400, 1200));
 
 
             application = new ApplicationLayer.Application(this);
