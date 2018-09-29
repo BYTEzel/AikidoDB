@@ -7,8 +7,8 @@
     <ProjectGuid>{FD322692-8DAF-470A-9869-66A30F1A89DC}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AikidoTrainingDatabase</RootNamespace>
-    <AssemblyName>AikidoTrainingDatabase</AssemblyName>
+    <RootNamespace>TrainingDatabase</RootNamespace>
+    <AssemblyName>TrainingDatabase</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>

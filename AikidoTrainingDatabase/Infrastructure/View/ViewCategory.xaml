@@ -15,7 +15,7 @@
         <DataTemplate x:Name="Normal" x:Key="Normal">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Name}" Width="200"/>
-                <TextBlock Text="{Binding Description}" />
+                <TextBlock Text="{Binding Description}" Margin="20,0,0,0"/>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Name="Detail" x:Key="Detail">

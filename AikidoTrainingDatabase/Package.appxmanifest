@@ -3,8 +3,8 @@
   <Identity Name="f1bca905-769d-4ec2-a54c-ba6cdbb5b9f9" Publisher="CN=bruen" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="f1bca905-769d-4ec2-a54c-ba6cdbb5b9f9" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>AikidoTrainingDatabase</DisplayName>
-    <PublisherDisplayName>bruen</PublisherDisplayName>
+    <DisplayName>TrainingDatabase</DisplayName>
+    <PublisherDisplayName>BYTEzel</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
