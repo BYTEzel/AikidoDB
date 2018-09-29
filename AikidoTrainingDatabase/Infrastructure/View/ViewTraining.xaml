@@ -18,7 +18,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Name}" Width="200" VerticalAlignment="Center"/>
                 <!--<TextBlock Text="{Binding CategoriesDisplay}" Width="200" VerticalAlignment="Center" />-->
-                <TextBlock Text="{Binding Description}" VerticalAlignment="Center" Width="500" Margin="20,0,0,0"/>
+                <TextBlock Text="{Binding Description}" VerticalAlignment="Center" Width="500" Height="45" Margin="20,25,0,0"/>
             </StackPanel>
         </DataTemplate>
 
