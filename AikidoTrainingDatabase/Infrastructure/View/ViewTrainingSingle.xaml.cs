@@ -126,9 +126,20 @@ namespace AikidoTrainingDatabase.Infrastructure.View
             // Event gets handled in the flyout -> ListViewFlyoutExcercisesAll_SelectionChanged
         }
 
-        private void ButtonExcerciseDelete_Click(object sender, RoutedEventArgs e)
+        private async void ButtonExcerciseDelete_Click(object sender, RoutedEventArgs e)
         {
-            application.DeleteExcerciseOfTraining(training, ListExcercises.SelectedIndex);
+            if (ListExcercises.SelectedIndex >= 0)
+            {
+                application.DeleteExcerciseOfTraining(training, ListExcercises.SelectedIndex);
+            }
+            else
+            {
+                // Show an error message
+                var dialog = new ContentDialog();
+                dialog.Content = "Please select a excercise before deleting it ;)";
+                dialog.CloseButtonText = "Ok";
+                var result = await dialog.ShowAsync();
+            }
         }
         
         private void ListViewFlyoutExcercisesAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
