@@ -12,10 +12,10 @@
         The detail view contain certain controls to manipulate the given data.
         -->
         <DataTemplate x:Name="Normal" x:Key="Normal">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Name}" Width="200" VerticalAlignment="Center"/>
-                <TextBlock Text="{Binding CategoriesDisplay}" Width="200" VerticalAlignment="Center" />
-                <TextBlock Text="{Binding Description}" VerticalAlignment="Center" Height="30" Margin="20,10,0,0"/>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Name}"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="24"/>
+                <TextBlock Text="{Binding CategoriesDisplay}"  VerticalAlignment="Center" HorizontalAlignment="Left" FontStyle="Italic" FontSize="12" Foreground="Gray"/>
+                <TextBlock Text="{Binding Description}" VerticalAlignment="Center" HorizontalAlignment="Left" Height="30" FontSize="12"/>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
